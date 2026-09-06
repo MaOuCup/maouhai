@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3回 魔王杯｜大会概要</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#08090d;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Helvetica Neue",sans-serif}
+header{height:72px;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;background:rgba(8,9,13,.97);border-bottom:1px solid #292b35}
+.brand{display:flex;align-items:flex-end;gap:8px;font-weight:900}.brand-main{font-size:30px;letter-spacing:-.04em;line-height:1}.brand-sub{font-size:13px;color:#ff1760;letter-spacing:.08em;line-height:1.2;margin-bottom:2px}
+
+main{padding:30px 18px 60px;max-width:720px;margin:auto}
+.kicker{margin-bottom:7px;color:#ff315f;font-size:12px;font-weight:800;letter-spacing:.18em}
+h1{margin:0 0 24px;font-size:30px;line-height:1.2}
+.card{position:relative;overflow:hidden;margin:12px 0;padding:18px;background:#111219;border:1px solid #292b35;border-radius:16px}
+.card:before{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:linear-gradient(#ff174f,#245cff)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid #252630}
+.row:last-child{border-bottom:none;padding-bottom:0}
+.label{color:#9b9da8;font-size:13px}
+.value{text-align:right;font-size:14px;font-weight:700}
+.section-title{margin:30px 0 10px;font-size:19px}
+.notice{margin:0;color:#b9bbc5;font-size:13px;line-height:1.8}
+.badge{display:inline-block;margin-top:12px;padding:7px 11px;border-radius:999px;background:#191b24;border:1px solid #343643;font-size:12px;font-weight:700}
+
+.menu-wrap{position:relative}
+.menu{width:44px;height:44px;border:1px solid #353742;border-radius:10px;background:#15161d;color:#fff;font-size:23px;cursor:pointer}
+.nav-menu{display:none;position:absolute;right:0;top:52px;min-width:200px;padding:8px;background:#111219;border:1px solid #292b35;border-radius:14px;box-shadow:0 14px 35px rgba(0,0,0,.35)}
+.nav-menu.open{display:block}
+.nav-menu a{display:block;padding:12px 14px;border-radius:9px;color:#fff;text-decoration:none;font-size:14px;font-weight:700}
+.nav-menu a:hover,.nav-menu a:focus{background:#1b1d26;outline:none}
+
+</style>
+</head>
+<body>
+<header>
+<div class="brand"><span class="brand-main">MOC</span><span class="brand-sub">魔王杯</span></div>
+<div class="menu-wrap">
+<button class="menu" id="menuButton" aria-label="メニュー" aria-expanded="false" aria-controls="navMenu">☰</button>
+<nav class="nav-menu" id="navMenu" aria-label="サイトメニュー">
+<a href="index.html">大会概要</a>
+<a href="regulations.html">レギュレーション</a>
+</nav>
+</div>
+</header>
+<main>
+<div class="kicker">MAOUHAI</div>
+<h1>第3回 魔王杯</h1>
+<div class="card">
+<div class="row"><span class="label">大会名</span><span class="value">第3回 魔王杯</span></div>
+<div class="row"><span class="label">ゲーム</span><span class="value">ブロスタ</span></div>
+<div class="row"><span class="label">開催日</span><span class="value">未定</span></div>
+<div class="row"><span class="label">開催時間</span><span class="value">未定</span></div>
+<div class="row"><span class="label">試合形式</span><span class="value">シングルエリミネーション</span></div>
+</div>
+<h2 class="section-title">大会形式</h2>
+<div class="card"><p class="notice">シングルエリミネーション方式で実施します。詳細な対戦ルールや試合設定については、<a href="regulations.html" style="color:#fff;text-decoration:underline;text-underline-offset:3px">レギュレーションページ</a>に掲載します。</p><span class="badge">SINGLE ELIMINATION</span></div>
+<h2 class="section-title">賞金・賞品</h2>
+<div class="card">
+<div class="row"><span class="label">賞金</span><span class="value">未定</span></div>
+<div class="row"><span class="label">総額</span><span class="value">未定</span></div>
+<div class="row"><span class="label">お渡し方法</span><span class="value">PayPay</span></div>
+</div>
+<h2 class="section-title">参加について</h2>
+<div class="card"><p class="notice">参加条件：LINEのオープンチャットを使用できること。</p></div>
+<h2 class="section-title">注意事項</h2>
+<div class="card"><p class="notice">大会参加前に<a href="regulations.html" style="color:#fff;text-decoration:underline;text-underline-offset:3px">レギュレーション</a>を必ず確認してください。</p></div>
+</main>
+
+<script>
+const menuButton=document.getElementById('menuButton');
+const navMenu=document.getElementById('navMenu');
+menuButton.addEventListener('click',()=>{
+  const isOpen=navMenu.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded',String(isOpen));
+});
+document.addEventListener('click',(e)=>{
+  if(!e.target.closest('.menu-wrap')){
+    navMenu.classList.remove('open');
+    menuButton.setAttribute('aria-expanded','false');
+  }
+});
+</script>
+
+</body>
+</html>
