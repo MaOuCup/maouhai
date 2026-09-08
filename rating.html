@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M Rating | 魔王杯</title>
+
+  <style>
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      background:#0f1115;
+      color:#f5f5f5;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:16px 20px;
+      background:#171a20;
+      border-bottom:1px solid #2b2f36;
+    }
+
+    .brand{
+      font-size:22px;
+      font-weight:700;
+    }
+
+    .menu-wrap{position:relative}
+
+    .menu{
+      width:44px;
+      height:44px;
+      border:0;
+      border-radius:10px;
+      background:#242830;
+      color:white;
+      font-size:24px;
+    }
+
+    .nav-menu{
+      display:none;
+      position:absolute;
+      right:0;
+      top:52px;
+      width:210px;
+      background:#1b1f26;
+      border:1px solid #343942;
+      border-radius:12px;
+      overflow:hidden;
+      z-index:10;
+    }
+
+    .nav-menu.open{display:block}
+
+    .nav-menu a{
+      display:block;
+      padding:14px 16px;
+      color:white;
+      text-decoration:none;
+      border-bottom:1px solid #30343b;
+    }
+
+    .nav-menu a:last-child{border-bottom:0}
+
+    main{
+      max-width:800px;
+      margin:auto;
+      padding:24px 16px 50px;
+    }
+
+    h1{
+      margin-top:0;
+      font-size:30px;
+    }
+
+    .card{
+      background:#191d23;
+      border:1px solid #30353d;
+      border-radius:14px;
+      padding:18px;
+      margin-bottom:22px;
+    }
+
+    .notice{
+      line-height:1.8;
+      color:#d8dbe0;
+    }
+
+    .table-wrap{
+      overflow-x:auto;
+      border-radius:12px;
+    }
+
+    table{
+      width:100%;
+      min-width:520px;
+      border-collapse:collapse;
+      background:#191d23;
+    }
+
+    th,td{
+      padding:12px 10px;
+      text-align:center;
+      border-bottom:1px solid #30353d;
+    }
+
+    th{background:#242830}
+
+    .rank{font-weight:700}
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">魔王杯</div>
+
+  <div class="menu-wrap">
+    <button class="menu" id="menuButton" aria-expanded="false">☰</button>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html">大会概要</a>
+      <a href="regulations.html">レギュレーション</a>
+      <a href="results.html">歴代魔王杯成績</a>
+      <a href="rating.html">M Rating</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <h1>M Rating</h1>
+
+  <div class="card">
+    <p class="notice">
+      魔王杯独自の基準により、算出する評価。
+    </p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>ランク</th>
+        <th>M Rating</th>
+        <th>ガチバトルのランク目安</th>
+      </tr>
+
+      <tr><td class="rank">S1</td><td>300以上</td><td>33,900以上</td></tr>
+      <tr><td class="rank">S2</td><td>290〜299.99</td><td>32,770〜</td></tr>
+      <tr><td class="rank">S3</td><td>280〜289.99</td><td>31,640〜</td></tr>
+      <tr><td class="rank">S4</td><td>270〜279.99</td><td>30,510〜</td></tr>
+      <tr><td class="rank">S5</td><td>260〜269.99</td><td>29,380〜</td></tr>
+      <tr><td class="rank">S6</td><td>250〜259.99</td><td>28,250〜</td></tr>
+
+      <tr><td class="rank">A1</td><td>240〜249.99</td><td>27,120〜</td></tr>
+      <tr><td class="rank">A2</td><td>230〜239.99</td><td>25,990〜</td></tr>
+      <tr><td class="rank">A3</td><td>220〜229.99</td><td>24,860〜</td></tr>
+      <tr><td class="rank">A4</td><td>210〜219.99</td><td>23,730〜</td></tr>
+      <tr><td class="rank">A5</td><td>200〜209.99</td><td>22,600〜</td></tr>
+      <tr><td class="rank">A6</td><td>190〜199.99</td><td>21,470〜</td></tr>
+
+      <tr><td class="rank">B1</td><td>180〜189.99</td><td>20,340〜</td></tr>
+      <tr><td class="rank">B2</td><td>170〜179.99</td><td>19,210〜</td></tr>
+      <tr><td class="rank">B3</td><td>160〜169.99</td><td>18,080〜</td></tr>
+      <tr><td class="rank">B4</td><td>150〜159.99</td><td>16,950〜</td></tr>
+      <tr><td class="rank">B5</td><td>140〜149.99</td><td>15,820〜</td></tr>
+      <tr><td class="rank">B6</td><td>130〜139.99</td><td>14,690〜</td></tr>
+
+      <tr><td class="rank">C1</td><td>120〜129.99</td><td>13,560〜</td></tr>
+      <tr><td class="rank">C2</td><td>110〜119.99</td><td>12,430〜</td></tr>
+      <tr><td class="rank">C3</td><td>100〜109.99</td><td>11,300〜</td></tr>
+      <tr><td class="rank">C4</td><td>90〜99.99</td><td>10,170〜</td></tr>
+      <tr><td class="rank">C5</td><td>80〜89.99</td><td>9,040〜</td></tr>
+      <tr><td class="rank">C6</td><td>70〜79.99</td><td>7,910〜</td></tr>
+
+      <tr><td class="rank">D1</td><td>60〜69.99</td><td>6,780〜</td></tr>
+      <tr><td class="rank">D2</td><td>50〜59.99</td><td>5,650〜</td></tr>
+      <tr><td class="rank">D3</td><td>40〜49.99</td><td>4,520〜</td></tr>
+      <tr><td class="rank">D4</td><td>30〜39.99</td><td>3,390〜</td></tr>
+      <tr><td class="rank">D5</td><td>20〜29.99</td><td>2,260〜</td></tr>
+      <tr><td class="rank">D6</td><td>20未満</td><td>2,260未満</td></tr>
+    </table>
+  </div>
+
+</main>
+
+<script>
+  const menuButton = document.getElementById('menuButton');
+  const navMenu = document.getElementById('navMenu');
+
+  menuButton.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.menu-wrap')) {
+      navMenu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded','false');
+    }
+  });
+</script>
+
+</body>
+</html>
