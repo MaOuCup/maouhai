@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魔王杯｜賞金受取申請</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f5f7;color:#171717;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Helvetica Neue",sans-serif}
+header{height:86px;padding:10px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e2e4e8}
+.brand{display:flex;align-items:flex-end;gap:10px;font-weight:900}
+.brand-main{font-size:42px;letter-spacing:-.05em;line-height:1}
+.brand-sub{font-size:17px;color:#ef2f62;letter-spacing:.03em;line-height:1.1;margin-bottom:3px}
+main{padding:28px 20px 70px;max-width:720px;margin:auto}
+.kicker{margin-bottom:8px;color:#ef3b3b;font-size:12px;font-weight:800;letter-spacing:.16em}
+h1{margin:0 0 10px;font-size:31px;line-height:1.25}
+.lead{margin:0 0 24px;color:#6f7784;font-size:14px;line-height:1.8}
+.card{position:relative;overflow:hidden;margin:14px 0 24px;padding:24px 24px 22px 30px;background:#fff;border:1px solid #dfe2e7;border-radius:20px;box-shadow:0 8px 24px rgba(20,24,32,.05)}
+.card:before{content:"";position:absolute;left:0;top:0;width:7px;height:100%;background:#ef3b3b}
+h2{margin:0 0 16px;font-size:19px}
+label{display:block;margin:16px 0 7px;font-size:13px;font-weight:800;color:#555d69}
+input,select{width:100%;padding:14px 15px;border:1px solid #dfe2e7;border-radius:13px;background:#fff;color:#171717;font-size:16px;outline:none}
+input:focus,select:focus{border-color:#ef3b3b;box-shadow:0 0 0 3px rgba(239,59,59,.1)}
+.note{margin:8px 0 0;color:#7a808b;font-size:12px;line-height:1.7}
+.submit{width:100%;margin-top:20px;padding:15px 18px;border:0;border-radius:14px;background:#ef3b3b;color:#fff;font-size:15px;font-weight:800;cursor:pointer}
+.summary{display:none;margin-top:18px;padding:18px;background:#f7f7f8;border:1px solid #dfe2e7;border-radius:14px}
+.summary.show{display:block}
+.summary p{margin:7px 0;color:#555d69;font-size:14px;line-height:1.7}
+.summary strong{color:#171717}
+.copy{width:100%;margin-top:12px;padding:13px;border:1px solid #dfe2e7;border-radius:12px;background:#fff;color:#171717;font-weight:800;cursor:pointer}
+.warning{margin-top:14px;padding:14px 15px;border-radius:13px;background:#fff4f4;color:#8c3030;font-size:12px;line-height:1.7}
+.back{display:inline-block;color:#e63939;text-decoration:underline;text-underline-offset:3px;font-size:14px;font-weight:700}
+@media(max-width:520px){header{height:82px;padding:10px 18px}.brand-main{font-size:38px}.brand-sub{font-size:16px}main{padding:24px 18px 60px}.card{padding:22px 20px 20px 28px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="brand-main">MOC</span><span class="brand-sub">魔王杯</span></div>
+</header>
+
+<main>
+<div class="kicker">PRIZE CLAIM</div>
+<h1>賞金受取申請</h1>
+<p class="lead">賞金対象者が受け取り方法を選択するためのページです。PayPayのQRコード・受取URL・Apple Gift Cardのコードなど、秘密にすべき情報はこのページには入力しません。</p>
+
+<section class="card">
+<h2>申請内容</h2>
+
+<form id="claimForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfuxHMqLB_3M1h6nGs6uYGbJS6JyVEZGAvHJJwL2eZZ-xab7A/formResponse" method="POST" target="hidden_iframe">
+<label for="claimCode">受取コード</label>
+<input id="claimCode" name="entry.1086273432" autocomplete="off" maxlength="40" placeholder="運営から案内されたコード" required>
+<p class="note">大会終了後、賞金対象者に運営が案内する確認用コードです。</p>
+
+<label for="teamName">チーム名</label>
+<input id="teamName" name="entry.430661356" maxlength="40" placeholder="例：チーム魔王" required>
+
+<label for="playerName">プレイヤー名</label>
+<input id="playerName" name="entry.934533282" maxlength="40" placeholder="大会で使用した名前" required>
+
+<label for="method">受け取り方法</label>
+<select id="method" name="entry.1623867935" required>
+  <option value="">選択してください</option>
+  <option value="PayPay">PayPay</option>
+  <option value="Apple Gift Card">Apple Gift Card</option>
+</select>
+
+<div class="warning">
+このページはGitHub Pages上で安全に秘密情報を処理する仕組みではありません。PayPayの受取URL・QRコードやApple Gift Cardコードは入力しないでください。
+</div>
+
+<button class="submit" type="submit">賞金受取申請を送信する</button>
+</form>
+
+<div class="summary" id="summary">
+  <h2 style="margin-bottom:10px">申請を送信しました</h2>
+  <p><strong>賞金受取申請を受け付けました。</strong></p>
+  <p>運営が内容を確認します。同じ内容を何度も送信しないでください。</p>
+</div>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe>
+</section>
+
+<a class="back" href="prize.html">← 賞金について戻る</a>
+</main>
+
+<script>
+const form=document.getElementById('claimForm');
+const summary=document.getElementById('summary');
+let submitted=false;
+
+form.addEventListener('submit',()=>{
+  submitted=true;
+  const button=form.querySelector('.submit');
+  button.disabled=true;
+  button.textContent='送信中…';
+});
+
+document.getElementById('hidden_iframe').addEventListener('load',()=>{
+  if(!submitted)return;
+  form.style.display='none';
+  summary.classList.add('show');
+  summary.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+</script>
+</body>
+</html>

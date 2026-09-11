@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魔王杯｜賞金について</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#f4f5f7;
+  color:#171717;
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Helvetica Neue",sans-serif;
+}
+header{
+  height:86px;
+  padding:10px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#fff;
+  border-bottom:1px solid #e2e4e8;
+}
+.brand{
+  display:flex;
+  align-items:flex-end;
+  gap:10px;
+  font-weight:900;
+}
+.brand-main{
+  font-size:42px;
+  letter-spacing:-.05em;
+  line-height:1;
+}
+.brand-sub{
+  font-size:17px;
+  color:#ef2f62;
+  letter-spacing:.03em;
+  line-height:1.1;
+  margin-bottom:3px;
+}
+main{
+  padding:28px 20px 70px;
+  max-width:720px;
+  margin:auto;
+}
+.kicker{
+  margin-bottom:8px;
+  color:#ef3b3b;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+h1{
+  margin:0 0 26px;
+  font-size:31px;
+  line-height:1.25;
+}
+h2{
+  margin:0 0 10px;
+  font-size:19px;
+}
+.card{
+  position:relative;
+  overflow:hidden;
+  margin:14px 0 24px;
+  padding:24px 24px 22px 30px;
+  background:#fff;
+  border:1px solid #dfe2e7;
+  border-radius:20px;
+  box-shadow:0 8px 24px rgba(20,24,32,.05);
+}
+.card:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:7px;
+  height:100%;
+  background:#ef3b3b;
+}
+.notice{
+  margin:0;
+  color:#6f7784;
+  font-size:15px;
+  line-height:1.9;
+}
+.notice + .notice{
+  margin-top:12px;
+}
+ul{
+  margin:14px 0 0;
+  padding-left:22px;
+  color:#6f7784;
+  font-size:15px;
+  line-height:1.9;
+}
+.badge{
+  display:inline-block;
+  margin-top:14px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:#f7f7f8;
+  border:1px solid #dfe2e7;
+  color:#333;
+  font-size:12px;
+  font-weight:700;
+}
+.back{
+  display:inline-block;
+  margin-top:2px;
+  color:#e63939;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  font-size:14px;
+  font-weight:700;
+}
+.menu-wrap{position:relative}
+.menu{
+  width:58px;
+  height:58px;
+  border:1px solid #dfe2e7;
+  border-radius:18px;
+  background:#fff;
+  color:#111;
+  font-size:30px;
+  line-height:1;
+  cursor:pointer;
+}
+.nav-menu{
+  display:none;
+  position:absolute;
+  right:0;
+  top:66px;
+  min-width:210px;
+  padding:8px;
+  background:#fff;
+  border:1px solid #dfe2e7;
+  border-radius:16px;
+  box-shadow:0 14px 35px rgba(0,0,0,.12);
+}
+.nav-menu.open{display:block}
+.nav-menu a{
+  display:block;
+  padding:12px 14px;
+  border-radius:10px;
+  color:#171717;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:700;
+}
+.nav-menu a:hover,.nav-menu a:focus{
+  background:#f3f4f6;
+  outline:none;
+}
+@media (max-width:520px){
+  header{height:82px;padding:10px 18px}
+  .brand-main{font-size:38px}
+  .brand-sub{font-size:16px}
+  main{padding:24px 18px 60px}
+  h1{font-size:30px}
+  .card{padding:22px 20px 20px 28px}
+  .notice,ul{font-size:14px}
+}
+
+.claim-button{
+  width:100%;margin-top:16px;padding:15px 18px;border:0;border-radius:14px;
+  background:#ef3b3b;color:#fff;font-size:15px;font-weight:800;cursor:pointer;
+}
+.claim-box{display:none;margin-top:14px}
+.claim-box.open{display:block}
+.method{
+  display:block;width:100%;margin-top:10px;padding:15px 16px;text-align:left;
+  background:#f7f7f8;border:1px solid #dfe2e7;border-radius:14px;color:#171717;
+  font-size:14px;font-weight:750;
+}
+.method small{display:block;margin-top:4px;color:#7a808b;font-weight:500;line-height:1.5}
+
+</style>
+</head>
+<body>
+<header>
+<div class="brand"><span class="brand-main">MOC</span><span class="brand-sub">魔王杯</span></div>
+<div class="menu-wrap">
+<button class="menu" id="menuButton" aria-label="メニュー" aria-expanded="false" aria-controls="navMenu">☰</button>
+<nav class="nav-menu" id="navMenu" aria-label="サイトメニュー">
+<a href="index.html">大会概要</a>
+<a href="regulations.html">レギュレーション</a>
+<a href="prize.html">賞金について</a>
+</nav>
+</div>
+</header>
+
+<main>
+<div class="kicker">PRIZE INFORMATION</div>
+<h1>賞金について</h1>
+
+<section class="card">
+<h2>賞金の受け渡し</h2>
+<p class="notice">大会終了後、運営が大会結果を確認し、賞金対象となる選手へPayPayまたはApple Gift Cardで賞金をお渡しします。</p>
+<span class="badge">PAYPAY</span> <span class="badge">APPLE GIFT CARD</span>
+</section>
+
+<section class="card">
+<h2>LINEオープンチャットについて</h2>
+<p class="notice">賞金の受け渡しに必要な個人的な情報は、LINEオープンチャット内で送信・交換しないようお願いします。</p>
+<ul>
+<li>PayPayのQRコード</li>
+<li>PayPayの受取用URL</li>
+<li>Apple Gift Cardのコード</li>
+<li>他SNSの個人アカウント</li>
+<li>その他の個人的な連絡先</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>賞金の受け取り方法</h2>
+<p class="notice"><strong style="color:#171717">PayPay / Apple Gift Card</strong> から、運営が案内する方法で賞金をお渡しします。</p>
+<p class="notice">Apple Gift Cardの場合は、未使用のギフトコードを賞金対象者へお渡しします。ギフトコードをサイトやLINEオープンチャット上に公開することはありません。</p>
+
+<a class="claim-button" href="claim.html" style="display:block;text-align:center;text-decoration:none">賞金を受け取る</a>
+<p class="notice" style="margin-top:12px">受け取り申請ページでは、PayPayまたはApple Gift Cardを選択できます。送金情報やギフトコードそのものは入力しません。</p>
+</section>
+
+<section class="card">
+<h2>未成年の参加者について</h2>
+<p class="notice">決済サービス等を利用する場合は、各サービスの利用規約に従い、必要に応じて保護者・法定代理人の同意を得てください。</p>
+</section>
+
+<a class="back" href="index.html">← 大会概要に戻る</a>
+</main>
+
+<script>
+const menuButton=document.getElementById('menuButton');
+const navMenu=document.getElementById('navMenu');
+menuButton.addEventListener('click',()=>{
+  const isOpen=navMenu.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded',String(isOpen));
+});
+document.addEventListener('click',(e)=>{
+  if(!e.target.closest('.menu-wrap')){
+    navMenu.classList.remove('open');
+    menuButton.setAttribute('aria-expanded','false');
+  }
+});
+</script>
+</body>
+</html>
