@@ -12,9 +12,9 @@
 
     :root{
       --red:#ef233c;
-      --deep-red:#a00018;
+      --x-red:#a00018;
       --black:#111318;
-      --gray:#6f7785;
+      --gray:#3f4650;
       --line:#dfe3e8;
       --bg:#f5f6f8;
       --white:#ffffff;
@@ -148,12 +148,14 @@
 
     .notice{
       margin:0;
-      color:var(--gray);
-      line-height:1.9;
-      font-size:16px;
+      color:#3f4650;
+      font-size:15px;
+      font-weight:600;
+      line-height:1.6;
+      white-space:nowrap;
     }
 
-    /* ランキング表 */
+    /* Rating表 */
     .table-card{
       position:relative;
       overflow:hidden;
@@ -180,26 +182,26 @@
 
     table{
       width:100%;
-      min-width:540px;
       border-collapse:collapse;
       background:#fff;
     }
 
     th,
     td{
-      padding:16px 12px;
+      padding:18px 10px;
       text-align:center;
       border-bottom:1px solid #e5e7eb;
     }
 
     th{
-      color:#6f7785;
       background:#fafafa;
+      color:#6f7785;
       font-size:14px;
       font-weight:700;
     }
 
     td{
+      color:#111318;
       font-size:15px;
     }
 
@@ -208,47 +210,30 @@
     }
 
     .rank{
-      font-weight:800;
       font-size:17px;
-    }
-
-    /* 最高ランク X */
-    .x-row td{
-      color:var(--deep-red);
-      background:#fff6f7;
       font-weight:800;
     }
 
-    .x-row .rank{
+    /* Xランク */
+    .rank-x{
+      color:var(--x-red);
       font-size:21px;
-      font-weight:950;
-      letter-spacing:1px;
-    }
-
-    .x-badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:46px;
-      height:34px;
-      padding:0 12px;
-      border-radius:9px;
-      background:var(--deep-red);
-      color:#fff;
       font-weight:900;
     }
 
+    /* スマホ */
     @media(max-width:600px){
+
       header{
-        padding:18px 30px;
+        padding:18px 24px;
       }
 
       .brand-main{
-        font-size:32px;
+        font-size:30px;
       }
 
       .brand-sub{
-        font-size:17px;
+        font-size:16px;
       }
 
       main{
@@ -260,7 +245,17 @@
       }
 
       .card{
-        padding:23px 22px 23px 30px;
+        padding:24px 18px 24px 28px;
+      }
+
+      .notice{
+        font-size:13px;
+        letter-spacing:-0.2px;
+      }
+
+      th,
+      td{
+        padding:17px 8px;
       }
     }
   </style>
@@ -300,12 +295,11 @@
 <main>
 
   <p class="eyebrow">M RATING</p>
+
   <h1>M Rating</h1>
 
   <div class="card">
-    <p class="notice">
-      魔王杯独自の算出方法に基づく評価指標。
-    </p>
+    <p class="notice">魔王杯独自の算出方法に基づく評価指標。</p>
   </div>
 
   <div class="table-card">
@@ -320,10 +314,8 @@
           <th>基準レート</th>
         </tr>
 
-        <tr class="x-row">
-          <td class="rank">
-            <span class="x-badge">X</span>
-          </td>
+        <tr>
+          <td class="rank rank-x">X</td>
           <td>310以上</td>
           <td>35,030以上</td>
         </tr>
