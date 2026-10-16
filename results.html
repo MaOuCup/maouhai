@@ -1,1 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴代魔王杯成績｜魔王杯</title>
 
+<style>
+*{
+  box-sizing:border-box;
+}
+
+:root{
+  color-scheme:light;
+  --background:#f8f7f4;
+  --card:#ffffff;
+  --text:#292724;
+  --muted:#746f66;
+  --gold:#806a3c;
+  --gold-line:#d8c9aa;
+  --red:#8b3038;
+  --divider:#eee8dc;
+}
+
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,
+    "Segoe UI","Noto Sans JP",sans-serif;
+  line-height:1.6;
+}
+
+header{
+  padding:18px 20px;
+  background:var(--card);
+  border-bottom:1px solid var(--gold-line);
+}
+
+header a{
+  color:var(--red);
+  font-size:20px;
+  font-weight:800;
+  text-decoration:none;
+}
+
+main{
+  width:100%;
+  max-width:800px;
+  margin:auto;
+  padding:28px 16px 60px;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:20px;
+  color:var(--muted);
+  font-size:14px;
+  text-decoration:none;
+}
+
+.back:hover{
+  color:var(--red);
+}
+
+h1{
+  margin:0 0 28px;
+  font-size:clamp(26px,6vw,36px);
+  line-height:1.4;
+}
+
+.card{
+  margin-bottom:28px;
+  padding:24px;
+  background:var(--card);
+  border:1px solid var(--gold-line);
+  border-top:3px solid #a88b50;
+  border-radius:14px;
+  box-shadow:0 4px 18px rgba(65,49,25,.04);
+}
+
+h2{
+  margin:0 0 8px;
+  color:var(--gold);
+  font-size:26px;
+}
+
+.participants{
+  margin:0 0 20px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.row{
+  padding:20px 0;
+  border-bottom:1px solid var(--divider);
+}
+
+.row:last-child{
+  padding-bottom:0;
+  border-bottom:none;
+}
+
+.rank{
+  display:block;
+  margin-bottom:6px;
+  color:var(--gold);
+  font-size:14px;
+  font-weight:700;
+}
+
+.winner .rank{
+  color:var(--red);
+}
+
+.team{
+  color:var(--text);
+  font-size:19px;
+  font-weight:800;
+  overflow-wrap:anywhere;
+}
+
+.from{
+  margin:6px 0 12px;
+  color:var(--muted);
+  font-size:14px;
+  overflow-wrap:anywhere;
+}
+
+.from-long{
+  font-size:clamp(8px,2.2vw,13px);
+  white-space:nowrap;
+}
+
+.players{
+  margin:8px 0 14px;
+  color:#514b42;
+  font-size:14px;
+  line-height:1.8;
+}
+
+.rating{
+  color:#514b42;
+  font-size:15px;
+}
+
+a:focus-visible{
+  outline:2px solid var(--red);
+  outline-offset:4px;
+}
+
+@media(max-width:480px){
+  .card{
+    padding:20px 18px;
+  }
+
+  h2{
+    font-size:24px;
+  }
+
+  .team{
+    font-size:18px;
+  }
+
+  .rating{
+    font-size:14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">魔王杯</a>
+</header>
+
+<main>
+
+<a class="back" href="index.html">← 大会概要に戻る</a>
+
+<h1>歴代魔王杯成績</h1>
+
+<!-- 第2回 魔王杯 -->
+<section class="card">
+  <h2>第2回 魔王杯</h2>
+  <p class="participants">全4チーム出場</p>
+
+  <div class="row winner">
+    <span class="rank">優勝</span>
+    <div class="team">皇族</div>
+    <div class="from">FROM：まったり王国</div>
+    <div class="rating">
+      M Rating：268.12 Point / S5
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">準優勝</span>
+    <div class="team">みかんソムリエ</div>
+    <div class="from">FROM：X</div>
+    <div class="rating">
+      M Rating：275.44 Point / S4
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">3位</span>
+    <div class="team">MTTS</div>
+    <div class="from">FROM：ブロスタ初心者</div>
+    <div class="rating">
+      M Rating：181.05 Point / B1
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">4位</span>
+    <div class="team">百鬼夜行</div>
+    <div class="from from-long">
+      FROM：ブロスタ 〜トロ上げ・ガチバトお手伝い〜
+    </div>
+    <div class="rating">
+      M Rating：138.11 Point / B6
+    </div>
+  </div>
+</section>
+
+<!-- 第1回 魔王杯 -->
+<section class="card">
+  <h2>第1回 魔王杯</h2>
+  <p class="participants">全8チーム(24選手)出場</p>
+
+  <div class="row winner">
+    <span class="rank">優勝</span>
+    <div class="team">カナダクオリティ</div>
+    <div class="from">FROM：まったり王国</div>
+    <div class="players">
+      かぐや<br>
+      虎珀<br>
+      もち
+    </div>
+    <div class="rating">
+      M Rating：252.80 Point / S6
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">準優勝</span>
+    <div class="team">魔王軍全軍凸撃‼️🫵🐮にょ〜</div>
+    <div class="from">FROM：まったり王国</div>
+    <div class="players">
+      でみ<br>
+      りむ<br>
+      ぐりぴ
+    </div>
+    <div class="rating">
+      M Rating：209.24 Point / A5
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">ベスト4</span>
+    <div class="team">Suiciding Colt</div>
+    <div class="from">FROM：ブロスタ初心者</div>
+    <div class="rating">
+      M Rating：193.45 Point / A6
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">ベスト4</span>
+    <div class="team">トマトGOT</div>
+    <div class="from">FROM：ブロスタ初心者</div>
+    <div class="rating">
+      M Rating：181.19 Point / B1
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">ベスト8</span>
+    <div class="team">jkキャリー会</div>
+    <div class="from">FROM：ブロスタ初心者</div>
+    <div class="rating">
+      M Rating：177.27 Point / B2
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">ベスト8</span>
+    <div class="team">まっちゃと愉快な仲間たち</div>
+    <div class="from">FROM：ブロスタ初心者</div>
+    <div class="rating">
+      M Rating：160.35 Point / B3
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">ベスト8</span>
+    <div class="team">ジジロット愛好家</div>
+    <div class="from">FROM：ブロスタ初心者</div>
+    <div class="rating">
+      M Rating：156.77 Point / B4
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="rank">ベスト8</span>
+    <div class="team">大戦犯にたまご4等分の危機</div>
+    <div class="from">FROM：ブロスタ初心者</div>
+    <div class="rating">
+      M Rating：144.50 Point / B5
+    </div>
+  </div>
+</section>
+
+</main>
+</body>
+</html>
