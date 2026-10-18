@@ -12,14 +12,13 @@
 
 :root{
   color-scheme:light;
-  --background:#f8f7f4;
+  --background:#f7f8fa;
   --card:#ffffff;
-  --text:#292724;
-  --muted:#746f66;
-  --gold:#806a3c;
-  --gold-line:#d8c9aa;
-  --red:#8b3038;
-  --divider:#eee8dc;
+  --text:#171717;
+  --muted:#6b7280;
+  --red:#dc2626;
+  --border:#e5e7eb;
+  --divider:#e5e7eb;
 }
 
 body{
@@ -28,13 +27,13 @@ body{
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,
     "Segoe UI","Noto Sans JP",sans-serif;
-  line-height:1.6;
+  line-height:1.7;
 }
 
 header{
   padding:18px 20px;
   background:var(--card);
-  border-bottom:1px solid var(--gold-line);
+  border-bottom:1px solid var(--border);
 }
 
 header a{
@@ -65,23 +64,35 @@ main{
 
 h1{
   margin:0 0 28px;
+  color:var(--text);
   font-size:clamp(26px,6vw,36px);
   line-height:1.4;
 }
 
 .card{
+  position:relative;
+  overflow:hidden;
   margin-bottom:28px;
-  padding:24px;
+  padding:26px 24px 26px 30px;
   background:var(--card);
-  border:1px solid var(--gold-line);
-  border-top:3px solid #a88b50;
-  border-radius:14px;
-  box-shadow:0 4px 18px rgba(65,49,25,.04);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 6px 24px rgba(0,0,0,.05);
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  width:4px;
+  background:var(--red);
 }
 
 h2{
   margin:0 0 8px;
-  color:var(--gold);
+  color:var(--text);
   font-size:26px;
 }
 
@@ -104,7 +115,7 @@ h2{
 .rank{
   display:block;
   margin-bottom:6px;
-  color:var(--gold);
+  color:var(--muted);
   font-size:14px;
   font-weight:700;
 }
@@ -134,13 +145,13 @@ h2{
 
 .players{
   margin:8px 0 14px;
-  color:#514b42;
+  color:#4b5563;
   font-size:14px;
   line-height:1.8;
 }
 
 .rating{
-  color:#514b42;
+  color:#374151;
   font-size:15px;
 }
 
@@ -151,7 +162,8 @@ a:focus-visible{
 
 @media(max-width:480px){
   .card{
-    padding:20px 18px;
+    padding:22px 18px 22px 24px;
+    border-radius:16px;
   }
 
   h2{
