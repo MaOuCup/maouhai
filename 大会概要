@@ -134,6 +134,7 @@ h1,
 <nav class="nav-menu" id="navMenu" aria-label="サイトメニュー">
 <a href="index.html">大会概要</a>
 <a href="regulations.html">レギュレーション</a>
+<a href="champions.html">歴代優勝チーム</a>
   <a href="results.html">魔王杯　歴代成績</a>
   <a href="rating.html">M Rating</a>
 </nav>
