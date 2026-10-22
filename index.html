@@ -124,6 +124,30 @@ h1,
   color:#b91c1c !important;
   background:#fee2e2 !important;
 }
+  /* サイト全体の背景 */
+body {
+  background: #f7f7f7;
+  color: #171717;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("./background.jpg") center / cover no-repeat;
+}
+
+/* 内容を載せるカード */
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-top: 4px solid #b91c1c;
+  border-radius: 18px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
 </style>
 </head>
 <body>
