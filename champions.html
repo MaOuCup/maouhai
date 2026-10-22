@@ -1,1 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#181719">
+  <title>歴代優勝チーム | 魔王杯</title>
 
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #201e20;
+      --muted: #686266;
+      --red: #861d2c;
+      --gold: #a58a52;
+      --line: #e5e0da;
+      --paper: #faf9f6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      isolation: isolate;
+    }
+
+    /* 画像を使わない固定背景 */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          135deg,
+          #211a1d 0%,
+          #211a1d 4%,
+          #751928 4%,
+          #751928 8%,
+          #a58a52 8%,
+          #a58a52 8.3%,
+          transparent 8.3%
+        ),
+        linear-gradient(
+          315deg,
+          #211a1d 0%,
+          #211a1d 4%,
+          #751928 4%,
+          #751928 9%,
+          #a58a52 9%,
+          #a58a52 9.3%,
+          transparent 9.3%
+        ),
+        linear-gradient(
+          135deg,
+          transparent 37%,
+          rgba(165, 138, 82, 0.045) 37%,
+          rgba(165, 138, 82, 0.045) 48%,
+          transparent 48%
+        ),
+        #faf9f6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 5px;
+    }
+
+    /* ヘッダー */
+    header {
+      background: #181719;
+      color: #fff;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .header-label {
+      color: #d0c2a4;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: var(--paper);
+      color: #514b4e;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .back:hover {
+      color: var(--red);
+    }
+
+    /* ページ見出し */
+    .page-heading {
+      margin: 34px 0 40px;
+      padding: 26px 0 28px;
+      background: var(--paper);
+      border-bottom: 1px solid #cfc5b3;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #806735;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 4px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--red);
+      font-size: clamp(27px, 5.8vw, 44px);
+      font-weight: 900;
+      letter-spacing: 0.025em;
+      line-height: 1.4;
+    }
+
+    .heading-note {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+    }
+
+    /* 優勝チーム */
+    .champions {
+      display: grid;
+      gap: 30px;
+    }
+
+    .champion-card {
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      box-shadow:
+        0 16px 36px rgba(36, 24, 28, 0.07),
+        0 2px 5px rgba(36, 24, 28, 0.03);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px 26px;
+      background: #211d20;
+      color: #fff;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .edition {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .edition-number {
+      color: #cabb9c;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .card-body {
+      position: relative;
+      padding: 34px 32px 30px;
+    }
+
+    /* 右上の細い斜め装飾 */
+    .card-body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 86px;
+      height: 86px;
+      background: linear-gradient(
+        225deg,
+        #f3efe7 0%,
+        #f3efe7 34%,
+        #a58a52 34%,
+        #a58a52 35%,
+        transparent 35%
+      );
+      pointer-events: none;
+    }
+
+    .winner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 16px;
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    .winner::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .team-name {
+      position: relative;
+      margin: 0 0 28px;
+      font-size: clamp(26px, 5.6vw, 39px);
+      font-weight: 900;
+      line-height: 1.5;
+      letter-spacing: 0.025em;
+      overflow-wrap: anywhere;
+    }
+
+    .details {
+      margin: 0;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr);
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .detail-row:last-child {
+      padding-bottom: 0;
+    }
+
+    dt {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    dd {
+      margin: 0;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .rating {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      column-gap: 5px;
+      row-gap: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .rating-value {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .rating-unit {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .rating-rank {
+      margin-left: 3px;
+      color: var(--red);
+      font-size: 17px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* 成績ページへのリンク */
+    .results-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 36px;
+      padding: 20px 24px;
+      background: #fff;
+      border: 1px solid #cfc5b3;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .results-link:hover {
+      background: #f5f1eb;
+      border-color: var(--gold);
+    }
+
+    .link-arrow {
+      color: var(--red);
+      font-size: 22px;
+    }
+
+    footer {
+      padding: 28px 20px;
+      background: #181719;
+      color: #c4bfc2;
+      border-top: 1px solid #443b32;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 480px) {
+      .header-inner {
+        padding: 20px;
+      }
+
+      .header-label {
+        display: none;
+      }
+
+      main {
+        padding: 24px 16px 56px;
+      }
+
+      .page-heading {
+        margin: 22px 0 28px;
+        padding: 22px 0 24px;
+      }
+
+      .card-top {
+        padding: 14px 20px;
+      }
+
+      .card-body {
+        padding: 28px 22px;
+      }
+
+      .team-name {
+        margin-bottom: 24px;
+      }
+
+      .detail-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding: 15px 0;
+      }
+
+      .results-link {
+        padding: 17px 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .results-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="魔王杯 トップページ">
+        <span class="brand-mark">MOC</span>
+        <span class="brand-name">魔王杯</span>
+      </a>
+
+      <span class="header-label">CHAMPIONS ARCHIVE</span>
+    </div>
+  </header>
+
+  <main>
+    <a class="back" href="index.html">
+      <span aria-hidden="true">←</span>
+      大会概要に戻る
+    </a>
+
+    <div class="page-heading">
+      <p class="eyebrow">CHAMPIONS</p>
+      <h1>歴代優勝チーム</h1>
+      <p class="heading-note">魔王杯の頂点に立ったチームの記録。</p>
+    </div>
+
+    <div class="champions">
+
+      <!-- 第2回 魔王杯 -->
+      <article class="champion-card" aria-labelledby="champion-2">
+        <div class="card-top">
+          <p class="edition">第2回 魔王杯</p>
+          <span class="edition-number" aria-hidden="true">02</span>
+        </div>
+
+        <div class="card-body">
+          <p class="winner">優勝</p>
+          <h2 class="team-name" id="champion-2">皇族</h2>
+
+          <dl class="details">
+            <div class="detail-row">
+              <dt>FROM</dt>
+              <dd>まったり王国</dd>
+            </div>
+
+            <div class="detail-row">
+              <dt>M Rating</dt>
+              <dd class="rating">
+                <span class="rating-value">268.12</span>
+                <span class="rating-unit">Point</span>
+                <span class="rating-rank">/ S5</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+      <!-- 第1回 魔王杯 -->
+      <article class="champion-card" aria-labelledby="champion-1">
+        <div class="card-top">
+          <p class="edition">第1回 魔王杯</p>
+          <span class="edition-number" aria-hidden="true">01</span>
+        </div>
+
+        <div class="card-body">
+          <p class="winner">優勝</p>
+          <h2 class="team-name" id="champion-1">カナダクオリティ</h2>
+
+          <dl class="details">
+            <div class="detail-row">
+              <dt>FROM</dt>
+              <dd>まったり王国</dd>
+            </div>
+
+            <div class="detail-row">
+              <dt>M Rating</dt>
+              <dd class="rating">
+                <span class="rating-value">252.80</span>
+                <span class="rating-unit">Point</span>
+                <span class="rating-rank">/ S6</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+
+    <a class="results-link" href="results.html">
+      <span>すべての大会成績を見る</span>
+      <span class="link-arrow" aria-hidden="true">→</span>
+    </a>
+  </main>
+
+  <footer>
+    <p>魔王杯｜ブロスタ非公式大会</p>
+  </footer>
+</body>
+</html>
