@@ -420,6 +420,125 @@
         transition: none;
       }
     }
+    /* カード全体 */
+.champion-card {
+  background: #fffdfa;
+  border: 1px solid #c9b994;
+  border-radius: 3px;
+  box-shadow:
+    0 18px 40px rgba(30, 18, 21, 0.13),
+    0 3px 8px rgba(30, 18, 21, 0.06);
+}
+
+/* 大会名の帯 */
+.card-top {
+  position: relative;
+  overflow: hidden;
+  padding: 17px 24px;
+  background: linear-gradient(
+    115deg,
+    #211b1e 0%,
+    #211b1e 65%,
+    #701725 65%,
+    #971e30 100%
+  );
+  border-bottom: 2px solid #b49a62;
+}
+
+.edition {
+  color: #fff;
+  font-weight: 800;
+}
+
+.edition-number {
+  color: #eadbb9;
+}
+
+/* カード内部の背景 */
+.card-body {
+  isolation: isolate;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #fffefa 55%,
+    #f1ece2 100%
+  );
+}
+
+/* 右上の金の斜線 */
+.card-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    225deg,
+    #e9dfc9 0%,
+    #f5efdf 27%,
+    #aa8b4d 27%,
+    #aa8b4d 28%,
+    transparent 28%
+  );
+}
+
+/* 右下の赤・黒・金の装飾 */
+.card-body::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 88px;
+  height: 72px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    315deg,
+    #231b1e 0%,
+    #231b1e 17%,
+    #861d2c 17%,
+    #861d2c 29%,
+    #b49a62 29%,
+    #b49a62 31%,
+    transparent 31%
+  );
+}
+
+.card-body {
+  padding-bottom: 48px;
+}
+
+.winner {
+  color: #861d2c;
+}
+
+.winner::before {
+  background: #a58a52;
+}
+
+.team-name {
+  color: #201b1e;
+}
+
+.detail-row {
+  border-top: 1px solid #ded5c5;
+}
+
+dt {
+  color: #655b51;
+}
+
+dd {
+  color: #241e20;
+  font-weight: 800;
+}
+
+.rating-rank {
+  color: #861d2c;
+}
   </style>
 </head>
 
