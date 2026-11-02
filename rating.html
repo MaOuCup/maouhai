@@ -207,6 +207,72 @@ h1 {
   line-height: 1.8;
 }
 
+/* ===== 計算機 ===== */
+
+.calculator-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 850;
+}
+
+.rating-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.rating-input {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--black);
+  font-size: 18px;
+  font-family: inherit;
+}
+
+.rating-input:focus {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.calculate-button {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--red);
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.calculate-button:hover {
+  background: #cf1931;
+}
+
+.rating-result {
+  margin-top: 20px;
+  padding: 18px 12px;
+  border-radius: 12px;
+  background: #f5f6f8;
+  text-align: center;
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.rating-result:empty {
+  display: none;
+}
+
 /* ===== ランク表 ===== */
 
 .table-card {
@@ -420,6 +486,44 @@ button:focus-visible {
     </p>
   </div>
 
+  <!-- ===== 計算機 ===== -->
+
+  <section class="card" aria-labelledby="calculatorTitle">
+
+    <h2 class="calculator-title" id="calculatorTitle">
+      M Rating 計算
+    </h2>
+
+    <label class="rating-label" for="highestRate">
+      最高レート
+    </label>
+
+    <input
+      class="rating-input"
+      id="highestRate"
+      type="number"
+      min="0"
+      step="1"
+      inputmode="numeric"
+      placeholder="最高レートを入力"
+    >
+
+    <button
+      class="calculate-button"
+      id="calculateButton"
+      type="button">
+      計算する
+    </button>
+
+    <div
+      class="rating-result"
+      id="ratingResult"
+      role="status"
+      aria-live="polite">
+    </div>
+
+  </section>
+
   <!-- ===== ランク表 ===== -->
 
   <div class="table-card">
@@ -442,160 +546,40 @@ button:focus-visible {
             <td>35,030以上</td>
           </tr>
 
-          <tr>
-            <td class="rank">S1</td>
-            <td>300〜309.99</td>
-            <td>33,900〜</td>
-          </tr>
-          <tr>
-            <td class="rank">S2</td>
-            <td>290〜299.99</td>
-            <td>32,770〜</td>
-          </tr>
-          <tr>
-            <td class="rank">S3</td>
-            <td>280〜289.99</td>
-            <td>31,640〜</td>
-          </tr>
-          <tr>
-            <td class="rank">S4</td>
-            <td>270〜279.99</td>
-            <td>30,510〜</td>
-          </tr>
-          <tr>
-            <td class="rank">S5</td>
-            <td>260〜269.99</td>
-            <td>29,380〜</td>
-          </tr>
-          <tr>
-            <td class="rank">S6</td>
-            <td>250〜259.99</td>
-            <td>28,250〜</td>
-          </tr>
+          <tr><td class="rank">S1</td><td>300〜309.99</td><td>33,900〜</td></tr>
+          <tr><td class="rank">S2</td><td>290〜299.99</td><td>32,770〜</td></tr>
+          <tr><td class="rank">S3</td><td>280〜289.99</td><td>31,640〜</td></tr>
+          <tr><td class="rank">S4</td><td>270〜279.99</td><td>30,510〜</td></tr>
+          <tr><td class="rank">S5</td><td>260〜269.99</td><td>29,380〜</td></tr>
+          <tr><td class="rank">S6</td><td>250〜259.99</td><td>28,250〜</td></tr>
 
-          <tr>
-            <td class="rank">A1</td>
-            <td>240〜249.99</td>
-            <td>27,120〜</td>
-          </tr>
-          <tr>
-            <td class="rank">A2</td>
-            <td>230〜239.99</td>
-            <td>25,990〜</td>
-          </tr>
-          <tr>
-            <td class="rank">A3</td>
-            <td>220〜229.99</td>
-            <td>24,860〜</td>
-          </tr>
-          <tr>
-            <td class="rank">A4</td>
-            <td>210〜219.99</td>
-            <td>23,730〜</td>
-          </tr>
-          <tr>
-            <td class="rank">A5</td>
-            <td>200〜209.99</td>
-            <td>22,600〜</td>
-          </tr>
-          <tr>
-            <td class="rank">A6</td>
-            <td>190〜199.99</td>
-            <td>21,470〜</td>
-          </tr>
+          <tr><td class="rank">A1</td><td>240〜249.99</td><td>27,120〜</td></tr>
+          <tr><td class="rank">A2</td><td>230〜239.99</td><td>25,990〜</td></tr>
+          <tr><td class="rank">A3</td><td>220〜229.99</td><td>24,860〜</td></tr>
+          <tr><td class="rank">A4</td><td>210〜219.99</td><td>23,730〜</td></tr>
+          <tr><td class="rank">A5</td><td>200〜209.99</td><td>22,600〜</td></tr>
+          <tr><td class="rank">A6</td><td>190〜199.99</td><td>21,470〜</td></tr>
 
-          <tr>
-            <td class="rank">B1</td>
-            <td>180〜189.99</td>
-            <td>20,340〜</td>
-          </tr>
-          <tr>
-            <td class="rank">B2</td>
-            <td>170〜179.99</td>
-            <td>19,210〜</td>
-          </tr>
-          <tr>
-            <td class="rank">B3</td>
-            <td>160〜169.99</td>
-            <td>18,080〜</td>
-          </tr>
-          <tr>
-            <td class="rank">B4</td>
-            <td>150〜159.99</td>
-            <td>16,950〜</td>
-          </tr>
-          <tr>
-            <td class="rank">B5</td>
-            <td>140〜149.99</td>
-            <td>15,820〜</td>
-          </tr>
-          <tr>
-            <td class="rank">B6</td>
-            <td>130〜139.99</td>
-            <td>14,690〜</td>
-          </tr>
+          <tr><td class="rank">B1</td><td>180〜189.99</td><td>20,340〜</td></tr>
+          <tr><td class="rank">B2</td><td>170〜179.99</td><td>19,210〜</td></tr>
+          <tr><td class="rank">B3</td><td>160〜169.99</td><td>18,080〜</td></tr>
+          <tr><td class="rank">B4</td><td>150〜159.99</td><td>16,950〜</td></tr>
+          <tr><td class="rank">B5</td><td>140〜149.99</td><td>15,820〜</td></tr>
+          <tr><td class="rank">B6</td><td>130〜139.99</td><td>14,690〜</td></tr>
 
-          <tr>
-            <td class="rank">C1</td>
-            <td>120〜129.99</td>
-            <td>13,560〜</td>
-          </tr>
-          <tr>
-            <td class="rank">C2</td>
-            <td>110〜119.99</td>
-            <td>12,430〜</td>
-          </tr>
-          <tr>
-            <td class="rank">C3</td>
-            <td>100〜109.99</td>
-            <td>11,300〜</td>
-          </tr>
-          <tr>
-            <td class="rank">C4</td>
-            <td>90〜99.99</td>
-            <td>10,170〜</td>
-          </tr>
-          <tr>
-            <td class="rank">C5</td>
-            <td>80〜89.99</td>
-            <td>9,040〜</td>
-          </tr>
-          <tr>
-            <td class="rank">C6</td>
-            <td>70〜79.99</td>
-            <td>7,910〜</td>
-          </tr>
+          <tr><td class="rank">C1</td><td>120〜129.99</td><td>13,560〜</td></tr>
+          <tr><td class="rank">C2</td><td>110〜119.99</td><td>12,430〜</td></tr>
+          <tr><td class="rank">C3</td><td>100〜109.99</td><td>11,300〜</td></tr>
+          <tr><td class="rank">C4</td><td>90〜99.99</td><td>10,170〜</td></tr>
+          <tr><td class="rank">C5</td><td>80〜89.99</td><td>9,040〜</td></tr>
+          <tr><td class="rank">C6</td><td>70〜79.99</td><td>7,910〜</td></tr>
 
-          <tr>
-            <td class="rank">D1</td>
-            <td>60〜69.99</td>
-            <td>6,780〜</td>
-          </tr>
-          <tr>
-            <td class="rank">D2</td>
-            <td>50〜59.99</td>
-            <td>5,650〜</td>
-          </tr>
-          <tr>
-            <td class="rank">D3</td>
-            <td>40〜49.99</td>
-            <td>4,520〜</td>
-          </tr>
-          <tr>
-            <td class="rank">D4</td>
-            <td>30〜39.99</td>
-            <td>3,390〜</td>
-          </tr>
-          <tr>
-            <td class="rank">D5</td>
-            <td>20〜29.99</td>
-            <td>2,260〜</td>
-          </tr>
-          <tr>
-            <td class="rank">D6</td>
-            <td>20未満</td>
-            <td>2,260未満</td>
-          </tr>
+          <tr><td class="rank">D1</td><td>60〜69.99</td><td>6,780〜</td></tr>
+          <tr><td class="rank">D2</td><td>50〜59.99</td><td>5,650〜</td></tr>
+          <tr><td class="rank">D3</td><td>40〜49.99</td><td>4,520〜</td></tr>
+          <tr><td class="rank">D4</td><td>30〜39.99</td><td>3,390〜</td></tr>
+          <tr><td class="rank">D5</td><td>20〜29.99</td><td>2,260〜</td></tr>
+          <tr><td class="rank">D6</td><td>20未満</td><td>2,260未満</td></tr>
 
         </tbody>
       </table>
@@ -609,10 +593,10 @@ button:focus-visible {
 
 </main>
 
-<!-- ===== メニュー開閉 ===== -->
-
 <script>
 (function () {
+  /* ===== メニュー開閉 ===== */
+
   const button = document.getElementById("menuButton");
   const panel = document.getElementById("menuPanel");
 
@@ -637,11 +621,86 @@ button:focus-visible {
   });
 
   document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
+    if (event.key === "Escape" && !panel.hidden) {
       closeMenu();
       button.focus();
     }
   });
+
+  /* ===== M Rating 計算 ===== */
+
+  const rateInput = document.getElementById("highestRate");
+  const calculateButton = document.getElementById("calculateButton");
+  const result = document.getElementById("ratingResult");
+
+  function getRank(point) {
+    if (point >= 310) return "X";
+    if (point >= 300) return "S1";
+    if (point >= 290) return "S2";
+    if (point >= 280) return "S3";
+    if (point >= 270) return "S4";
+    if (point >= 260) return "S5";
+    if (point >= 250) return "S6";
+
+    if (point >= 240) return "A1";
+    if (point >= 230) return "A2";
+    if (point >= 220) return "A3";
+    if (point >= 210) return "A4";
+    if (point >= 200) return "A5";
+    if (point >= 190) return "A6";
+
+    if (point >= 180) return "B1";
+    if (point >= 170) return "B2";
+    if (point >= 160) return "B3";
+    if (point >= 150) return "B4";
+    if (point >= 140) return "B5";
+    if (point >= 130) return "B6";
+
+    if (point >= 120) return "C1";
+    if (point >= 110) return "C2";
+    if (point >= 100) return "C3";
+    if (point >= 90) return "C4";
+    if (point >= 80) return "C5";
+    if (point >= 70) return "C6";
+
+    if (point >= 60) return "D1";
+    if (point >= 50) return "D2";
+    if (point >= 40) return "D3";
+    if (point >= 30) return "D4";
+    if (point >= 20) return "D5";
+
+    return "D6";
+  }
+
+  function calculateRating() {
+    const raw = rateInput.value.trim();
+    const rate = Number(raw);
+
+    if (
+      raw === "" ||
+      !Number.isFinite(rate) ||
+      rate < 0 ||
+      !Number.isInteger(rate)
+    ) {
+      result.textContent = "正しい最高レートを入力してください。";
+      return;
+    }
+
+    const point = Math.round((rate / 113) * 100) / 100;
+    const rank = getRank(point);
+
+    result.textContent =
+      point.toFixed(2) + " Point / " + rank;
+  }
+
+  calculateButton.addEventListener("click", calculateRating);
+
+  rateInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      calculateRating();
+    }
+  });
+
 })();
 </script>
 
