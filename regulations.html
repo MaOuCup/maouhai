@@ -1,436 +1,640 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
 <title>レギュレーション｜魔王杯</title>
 
 <style>
-*{
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
-:root{
-  color-scheme:light;
-  --background:#f7f8fa;
-  --white:#ffffff;
-  --text:#171717;
-  --muted:#6b7280;
-  --red:#dc2626;
-  --border:#e2e4e8;
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --white: #ffffff;
+  --black: #171717;
+  --gray: #6b7280;
+  --red: #ef233c;
+  --line: #e2e4e8;
 }
 
-html{
-  scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-  margin:0;
-  background:var(--background);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,
-    "Segoe UI","Noto Sans JP",sans-serif;
-  line-height:1.8;
-}
-
-a{
-  color:inherit;
-}
-
-header{
-  min-height:72px;
-  padding:12px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  background:var(--white);
-  border-bottom:1px solid var(--border);
-}
-
-.brand{
-  display:flex;
-  align-items:baseline;
-  gap:8px;
-  text-decoration:none;
-  font-weight:900;
-}
-
-.brand-main{
-  font-size:30px;
-  line-height:1;
-  letter-spacing:-0.04em;
-}
-
-.brand-sub{
-  color:var(--red);
-  font-size:14px;
-}
-
-.back{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:44px;
-  padding:8px 12px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  background:var(--white);
-  font-size:13px;
-  font-weight:700;
-  text-decoration:none;
-  white-space:nowrap;
-}
-
-.back:hover{
-  color:var(--red);
-  background:#fef2f2;
-}
-
-main{
-  width:100%;
-  max-width:800px;
-  margin:auto;
-  padding:36px 18px 64px;
-}
-
-.kicker{
-  margin:0 0 8px;
-  color:var(--red);
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:0.2em;
-}
-
-h1{
-  margin:0 0 14px;
-  font-size:clamp(28px,6vw,40px);
-  line-height:1.4;
-  overflow-wrap:anywhere;
-}
-
-.lead{
-  margin:0 0 32px;
-  color:var(--muted);
-  font-size:14px;
-}
-
-.section-title{
-  margin:30px 0 12px;
-  font-size:20px;
-  line-height:1.5;
-}
-
-.number{
-  margin-right:10px;
-  color:var(--red);
-  font-size:14px;
-  font-weight:800;
-}
-
-.card{
-  position:relative;
-  overflow:hidden;
-  padding:22px 22px 22px 28px;
-  background:var(--white);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 6px 24px rgba(0,0,0,0.04);
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  width:4px;
-  background:var(--red);
-}
-
-.single{
-  margin:0;
-  font-size:15px;
-  font-weight:600;
-}
-
-.rules{
-  margin:0;
-  padding:0;
-  list-style:none;
-}
-
-.rules li{
-  padding:14px 0;
-  border-bottom:1px solid var(--border);
-  font-size:14px;
-  overflow-wrap:anywhere;
-}
-
-.rules li:first-child{
-  padding-top:0;
-}
-
-.rules li:last-child{
-  padding-bottom:0;
-  border-bottom:none;
-}
-
-.term{
-  display:block;
-  margin-bottom:3px;
-  color:var(--text);
-  font-weight:800;
-}
-
-.footer-note{
-  margin:40px 0 0;
-  padding-top:20px;
-  border-top:1px solid var(--border);
-  color:var(--muted);
-  font-size:12px;
-  text-align:center;
-}
-
-a:focus-visible{
-  outline:2px solid var(--red);
-  outline-offset:4px;
-}
-
-@media(max-width:480px){
-  header{
-    padding:12px 16px;
-  }
-
-  .brand-main{
-    font-size:28px;
-  }
-
-  .brand-sub{
-    font-size:12px;
-  }
-
-  main{
-    padding:30px 16px 56px;
-  }
-
-  .section-title{
-    font-size:19px;
-  }
-
-  .card{
-    padding:20px 18px 20px 24px;
-    border-radius:16px;
-  }
-}
-  /* サイト全体の背景 */
 body {
-  background: #f7f7f7;
+  margin: 0;
+  background: var(--bg);
+  color: var(--black);
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+}
+
+/* ===== 共通ヘッダー ===== */
+
+.site-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 90px;
+  padding: 16px 6%;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-main {
   color: #171717;
-  isolation: isolate;
+  font-size: clamp(32px, 7vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 1;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: url("./background.jpg") center / cover no-repeat;
+.brand-sub {
+  color: #ef233c;
+  font-size: clamp(15px, 3.3vw, 21px);
+  font-weight: 900;
+  line-height: 1;
 }
 
-/* 内容を載せるカード */
-.card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-top: 4px solid #b91c1c;
+/* ===== 共通メニュー ===== */
+
+.menu-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  padding: 0;
+  border: 1.5px solid var(--line);
   border-radius: 18px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  background: var(--white);
+  color: var(--black);
+  cursor: pointer;
+}
+
+.menu-icon {
+  display: block;
+  font-size: 33px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.menu-button:hover {
+  background: #f9fafb;
+}
+
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: min(310px, calc(100vw - 32px));
+  padding: 12px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.16);
+}
+
+.menu-panel[hidden] {
+  display: none;
+}
+
+.menu-panel a {
+  display: block;
+  padding: 15px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+.menu-panel a:hover,
+.menu-panel a:focus-visible {
+  background: #f5f6f8;
+}
+
+.menu-panel a[aria-current="page"] {
+  color: var(--red);
+  background: #fff1f2;
+}
+
+/* ===== メインコンテンツ ===== */
+
+main {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 48px 20px 80px;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 0.22em;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 6vw, 44px);
+  font-weight: 850;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.lead {
+  margin: 0 0 42px;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+.rule-section {
+  margin-top: 34px;
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.number {
+  color: var(--red);
+  font-size: 14px;
+  font-weight: 850;
+}
+
+/* ===== 共通カード ===== */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 26px 26px 32px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid #b91c1c;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: var(--red);
+}
+
+.single {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.rules {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rules li {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.rules li:first-child {
+  padding-top: 0;
+}
+
+.rules li:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.term {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--black);
+  font-weight: 800;
+}
+
+.footer-note {
+  margin: 50px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--gray);
+  font-size: 12px;
+  text-align: center;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+
+/* ===== スマートフォン対応 ===== */
+
+@media (max-width: 480px) {
+  .site-header {
+    min-height: 78px;
+    padding: 12px 16px;
+  }
+
+  .brand-main {
+    font-size: 32px;
+  }
+
+  .brand-sub {
+    font-size: 15px;
+  }
+
+  .menu-button {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+  }
+
+  .menu-icon {
+    font-size: 30px;
+  }
+
+  main {
+    padding: 36px 16px 64px;
+  }
+
+  .section-title {
+    font-size: 19px;
+  }
+
+  .card {
+    padding: 22px 20px 22px 26px;
+    border-radius: 18px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <a class="brand" href="index.html" aria-label="魔王杯 大会概要へ">
+<!-- ===== 共通ヘッダー ===== -->
 
-  <a class="back" href="index.html">大会概要へ</a>
+<header class="site-header">
+
+  <a class="brand" href="index.html"
+     aria-label="魔王杯 大会概要へ">
+    <span class="brand-main">MOC</span>
+    <span class="brand-sub">魔王杯</span>
+  </a>
+
+  <div class="menu-wrap">
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="メニュー"
+      aria-expanded="false"
+      aria-controls="menuPanel">
+      <span class="menu-icon" aria-hidden="true">☰</span>
+    </button>
+
+    <nav class="menu-panel"
+         id="menuPanel"
+         aria-label="サイト内メニュー"
+         hidden>
+
+      <a href="index.html">
+        大会概要
+      </a>
+
+      <a href="regulations.html"
+         aria-current="page">
+        レギュレーション
+      </a>
+
+      <a href="contributors/">
+        大会協力
+      </a>
+
+      <a href="champions.html">
+        歴代優勝チーム
+      </a>
+
+      <a href="results.html">
+        魔王杯 歴代ベスト16
+      </a>
+
+      <a href="rating.html">
+        M Rating
+      </a>
+
+    </nav>
+  </div>
+
 </header>
+
+<!-- ===== レギュレーション ===== -->
 
 <main>
 
-<p class="kicker">MAOUHAI</p>
-<h1>レギュレーション</h1>
-<p class="lead">
-  大会参加前に、以下の競技規則を確認してください。
-</p>
+  <p class="kicker">REGULATIONS</p>
 
-<section>
-  <h2 class="section-title">
-    <span class="number">01</span>参加条件
-  </h2>
+  <h1>レギュレーション</h1>
 
-  <div class="card">
-    <p class="single">
-      LINEオープンチャットを利用できること。
-    </p>
-  </div>
-</section>
+  <p class="lead">
+    大会参加前に、以下の競技規則を確認してください。
+  </p>
 
-<section>
-  <h2 class="section-title">
-    <span class="number">02</span>チーム編成
-  </h2>
+  <!-- 01 -->
 
-  <div class="card">
-    <p class="single">3人で1チームとする。</p>
-  </div>
-</section>
+  <section class="rule-section">
+    <h2 class="section-title">
+      <span class="number">01</span>
+      参加条件
+    </h2>
 
-<section>
-  <h2 class="section-title">
-    <span class="number">03</span>大会形式
-  </h2>
+    <div class="card">
+      <p class="single">
+        LINEオープンチャットを利用できること。
+      </p>
+    </div>
+  </section>
 
-  <div class="card">
-    <ul class="rules">
-      <li>シングルエリミネーション方式で実施する。</li>
-      <li>対戦にはフレンドバトルを使用する。</li>
-      <li>ゲームモードは大会運営が指定する。</li>
-      <li>1セットごとにマップを変更する。</li>
-      <li>
-        フレンドバトルの作成者は、大会運営が事前に指定する。
-      </li>
-    </ul>
-  </div>
-</section>
+  <!-- 02 -->
 
-<section>
-  <h2 class="section-title">
-    <span class="number">04</span>勝利条件
-  </h2>
+  <section class="rule-section">
+    <h2 class="section-title">
+      <span class="number">02</span>
+      チーム編成
+    </h2>
 
-  <div class="card">
-    <ul class="rules">
-      <li>
-        <span class="term">準々決勝まで</span>
-        BO3（3セット中2セット先取）
-      </li>
-      <li>
-        <span class="term">準決勝</span>
-        BO5（5セット中3セット先取）
-      </li>
-      <li>
-        <span class="term">決勝</span>
-        BO5（5セット中3セット先取）
-      </li>
-      <li>
-        1セットを1点とし、セット取得数によって勝敗を決定する。
-      </li>
-    </ul>
-  </div>
-</section>
+    <div class="card">
+      <p class="single">
+        3人で1チームとする。
+      </p>
+    </div>
+  </section>
 
-<section>
-  <h2 class="section-title">
-    <span class="number">05</span>禁止事項
-  </h2>
+  <!-- 03 -->
 
-  <div class="card">
-    <ul class="rules">
-      <li>魔王杯競技規則に違反する行為。</li>
-      <li>
-        外部ツールなどを利用したチートその他の不正行為。
-      </li>
-      <li>相手選手への挑発や誹謗中傷。</li>
-      <li>故意に試合を妨害する行為。</li>
-      <li>大会運営の指示に従わない行為。</li>
-      <li>試合結果を意図的に操作する行為。</li>
-      <li>
-        なりすまし、または他人のアカウントを使用して参加する行為。
-      </li>
-      <li>
-        その他、大会の公平性や健全性を損なう行為。
-      </li>
-    </ul>
-  </div>
-</section>
+  <section class="rule-section">
+    <h2 class="section-title">
+      <span class="number">03</span>
+      大会形式
+    </h2>
 
-<section>
-  <h2 class="section-title">
-    <span class="number">06</span>遅刻・欠場
-  </h2>
+    <div class="card">
+      <ul class="rules">
+        <li>
+          シングルエリミネーション方式で実施する。
+        </li>
+        <li>
+          対戦にはフレンドバトルを使用する。
+        </li>
+        <li>
+          ゲームモードは大会運営が指定する。
+        </li>
+        <li>
+          1セットごとにマップを変更する。
+        </li>
+        <li>
+          フレンドバトルの作成者は、大会運営が事前に指定する。
+        </li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="card">
-    <ul class="rules">
-      <li>
-        指定された試合開始時刻までに、対戦の準備を完了すること。
-      </li>
-      <li>
-        試合開始時刻から5分を経過しても準備が完了していない場合、不戦敗とする。
-      </li>
-      <li>
-        無断で試合を欠場した場合、失格となる場合がある。
-      </li>
-      <li>
-        やむを得ない事情で遅刻・欠場する場合は、速やかに大会運営へ連絡すること。
-      </li>
-    </ul>
-  </div>
-</section>
+  <!-- 04 -->
 
-<section>
-  <h2 class="section-title">
-    <span class="number">07</span>試合中のトラブル
-  </h2>
+  <section class="rule-section">
+    <h2 class="section-title">
+      <span class="number">04</span>
+      勝利条件
+    </h2>
 
-  <div class="card">
-    <ul class="rules">
-      <li>
-        選手側の通信環境による切断は、原則として1回のみ再試合を行う。
-      </li>
-      <li>
-        大会運営側に原因がある場合は、再試合を行う。
-      </li>
-    </ul>
-  </div>
-</section>
+    <div class="card">
+      <ul class="rules">
+        <li>
+          <span class="term">準々決勝まで</span>
+          BO3（3セット中2セット先取）
+        </li>
+        <li>
+          <span class="term">準決勝</span>
+          BO5（5セット中3セット先取）
+        </li>
+        <li>
+          <span class="term">決勝</span>
+          BO5（5セット中3セット先取）
+        </li>
+        <li>
+          1セットを1点とし、セット取得数によって勝敗を決定する。
+        </li>
+      </ul>
+    </div>
+  </section>
 
-<section>
-  <h2 class="section-title">
-    <span class="number">08</span>試合結果の報告
-  </h2>
+  <!-- 05 -->
 
-  <div class="card">
-    <ul class="rules">
-      <li>
-        試合終了後、勝利チームが大会運営へ試合結果を報告する。
-      </li>
-      <li>
-        試合結果の報告時には、試合結果の証拠となる動画を併せて提出する。
-      </li>
-    </ul>
-  </div>
-</section>
+  <section class="rule-section">
+    <h2 class="section-title">
+      <span class="number">05</span>
+      禁止事項
+    </h2>
 
-<section>
-  <h2 class="section-title">
-    <span class="number">09</span>大会運営・裁定
-  </h2>
+    <div class="card">
+      <ul class="rules">
+        <li>
+          魔王杯競技規則に違反する行為。
+        </li>
+        <li>
+          外部ツールなどを利用したチートその他の不正行為。
+        </li>
+        <li>
+          相手選手への挑発や誹謗中傷。
+        </li>
+        <li>
+          故意に試合を妨害する行為。
+        </li>
+        <li>
+          大会運営の指示に従わない行為。
+        </li>
+        <li>
+          試合結果を意図的に操作する行為。
+        </li>
+        <li>
+          なりすまし、または他人のアカウントを使用して参加する行為。
+        </li>
+        <li>
+          その他、大会の公平性や健全性を損なう行為。
+        </li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="card">
-    <ul class="rules">
-      <li>大会運営の判断を最終決定とする。</li>
-      <li>
-        本レギュレーションに定めのない事項が発生した場合は、大会運営が状況を確認のうえ判断する。
-      </li>
-    </ul>
-  </div>
-</section>
+  <!-- 06 -->
 
-<p class="footer-note">魔王杯 競技規則</p>
+  <section class="rule-section">
+    <h2 class="section-title">
+      <span class="number">06</span>
+      遅刻・欠場
+    </h2>
+
+    <div class="card">
+      <ul class="rules">
+        <li>
+          指定された試合開始時刻までに、対戦の準備を完了すること。
+        </li>
+        <li>
+          試合開始時刻から5分を経過しても準備が完了していない場合、不戦敗とする。
+        </li>
+        <li>
+          無断で試合を欠場した場合、失格となる場合がある。
+        </li>
+        <li>
+          やむを得ない事情で遅刻・欠場する場合は、速やかに大会運営へ連絡すること。
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 07 -->
+
+  <section class="rule-section">
+    <h2 class="section-title">
+      <span class="number">07</span>
+      試合中のトラブル
+    </h2>
+
+    <div class="card">
+      <ul class="rules">
+        <li>
+          選手側の通信環境による切断は、原則として1回のみ再試合を行う。
+        </li>
+        <li>
+          大会運営側に原因がある場合は、再試合を行う。
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 08 -->
+
+  <section class="rule-section">
+    <h2 class="section-title">
+      <span class="number">08</span>
+      試合結果の報告
+    </h2>
+
+    <div class="card">
+      <ul class="rules">
+        <li>
+          試合終了後、勝利チームが大会運営へ試合結果を報告する。
+        </li>
+        <li>
+          試合結果の報告時には、試合結果の証拠となる動画を併せて提出する。
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 09 -->
+
+  <section class="rule-section">
+    <h2 class="section-title">
+      <span class="number">09</span>
+      大会運営・裁定
+    </h2>
+
+    <div class="card">
+      <ul class="rules">
+        <li>
+          大会運営の判断を最終決定とする。
+        </li>
+        <li>
+          本レギュレーションに定めのない事項が発生した場合は、大会運営が状況を確認のうえ判断する。
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="footer-note">
+    魔王杯 競技規則
+  </p>
 
 </main>
+
+<!-- ===== メニュー開閉 ===== -->
+
+<script>
+(function () {
+  const button = document.getElementById("menuButton");
+  const panel = document.getElementById("menuPanel");
+
+  function closeMenu() {
+    panel.hidden = true;
+    button.setAttribute("aria-expanded", "false");
+  }
+
+  button.addEventListener("click", function () {
+    const willOpen = panel.hidden;
+    panel.hidden = !willOpen;
+    button.setAttribute(
+      "aria-expanded",
+      String(willOpen)
+    );
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest(".menu-wrap")) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+      button.focus();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
