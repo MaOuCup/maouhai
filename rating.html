@@ -1,402 +1,648 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>M Rating | 魔王杯</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>M Rating｜魔王杯</title>
 
-  <style>
-    *{
-      box-sizing:border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    :root{
-      --red:#ef233c;
-      --x-red:#a00018;
-      --black:#111318;
-      --gray:#3f4650;
-      --line:#dfe3e8;
-      --bg:#f5f6f8;
-      --white:#ffffff;
-    }
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --white: #ffffff;
+  --black: #171717;
+  --gray: #6b7280;
+  --red: #ef233c;
+  --line: #e2e4e8;
+}
 
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--black);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
-      "Noto Sans JP",sans-serif;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    /* ヘッダー */
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 30px;
-      background:var(--white);
-      border-bottom:1px solid #e5e7eb;
-    }
-
-    .brand{
-      display:flex;
-      align-items:baseline;
-      gap:10px;
-    }
-
-    .brand-main{
-      font-size:34px;
-      font-weight:900;
-      letter-spacing:-1px;
-    }
-
-    .brand-sub{
-      color:var(--red);
-      font-size:18px;
-      font-weight:800;
-    }
-
-    .menu-wrap{
-      position:relative;
-    }
-
-    .menu{
-      width:54px;
-      height:54px;
-      border:1px solid #dfe3e8;
-      border-radius:14px;
-      background:#fff;
-      color:#111318;
-      font-size:26px;
-      cursor:pointer;
-    }
-
-    .nav-menu{
-      display:none;
-      position:absolute;
-      right:0;
-      top:64px;
-      width:220px;
-      background:#fff;
-      border:1px solid #dfe3e8;
-      border-radius:14px;
-      overflow:hidden;
-      z-index:100;
-      box-shadow:0 12px 30px rgba(0,0,0,.10);
-    }
-
-    .nav-menu.open{
-      display:block;
-    }
-
-    .nav-menu a{
-      display:block;
-      padding:15px 17px;
-      color:#111318;
-      text-decoration:none;
-      border-bottom:1px solid #eceef1;
-      font-weight:600;
-    }
-
-    .nav-menu a:last-child{
-      border-bottom:0;
-    }
-
-    /* メイン */
-    main{
-      max-width:800px;
-      margin:auto;
-      padding:52px 32px 70px;
-    }
-
-    .eyebrow{
-      margin:0 0 12px;
-      color:var(--red);
-      font-size:15px;
-      font-weight:900;
-      letter-spacing:4px;
-    }
-
-    h1{
-      margin:0 0 34px;
-      font-size:42px;
-      line-height:1.2;
-      letter-spacing:-1px;
-    }
-
-    /* 説明カード */
-    .card{
-      position:relative;
-      overflow:hidden;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:26px 28px 26px 34px;
-      margin-bottom:34px;
-      box-shadow:0 8px 24px rgba(20,25,35,.06);
-    }
-
-    .card::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      width:7px;
-      height:100%;
-      background:var(--red);
-    }
-
-    .notice{
-      margin:0;
-      color:#3f4650;
-      font-size:15px;
-      font-weight:600;
-      line-height:1.6;
-      white-space:nowrap;
-    }
-
-    /* Rating表 */
-    .table-card{
-      position:relative;
-      overflow:hidden;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:24px;
-      box-shadow:0 8px 24px rgba(20,25,35,.06);
-    }
-
-    .table-card::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      width:7px;
-      height:100%;
-      background:var(--red);
-      z-index:2;
-    }
-
-    .table-wrap{
-      overflow-x:auto;
-    }
-
-    table{
-      width:100%;
-      border-collapse:collapse;
-      background:#fff;
-    }
-
-    th,
-    td{
-      padding:18px 10px;
-      text-align:center;
-      border-bottom:1px solid #e5e7eb;
-    }
-
-    th{
-      background:#fafafa;
-      color:#6f7785;
-      font-size:14px;
-      font-weight:700;
-    }
-
-    td{
-      color:#111318;
-      font-size:15px;
-    }
-
-    tr:last-child td{
-      border-bottom:0;
-    }
-
-    .rank{
-      font-size:17px;
-      font-weight:800;
-    }
-
-    /* Xランク */
-    .rank-x{
-      color:var(--x-red);
-      font-size:21px;
-      font-weight:900;
-    }
-
-    /* スマホ */
-    @media(max-width:600px){
-
-      header{
-        padding:18px 24px;
-      }
-
-      .brand-main{
-        font-size:30px;
-      }
-
-      .brand-sub{
-        font-size:16px;
-      }
-
-      main{
-        padding:46px 32px 60px;
-      }
-
-      h1{
-        font-size:38px;
-      }
-
-      .card{
-        padding:24px 18px 24px 28px;
-      }
-
-      .notice{
-        font-size:13px;
-        letter-spacing:-0.2px;
-      }
-
-      th,
-      td{
-        padding:17px 8px;
-      }
-    }
-    /* サイト全体の背景 */
 body {
-  background: #f7f7f7;
+  margin: 0;
+  background: var(--bg);
+  color: var(--black);
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+}
+
+/* ===== 共通ヘッダー ===== */
+
+.site-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 90px;
+  padding: 16px 6%;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-main {
   color: #171717;
-  isolation: isolate;
+  font-size: clamp(32px, 7vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 1;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: url("./background.jpg") center / cover no-repeat;
+.brand-sub {
+  color: #ef233c;
+  font-size: clamp(15px, 3.3vw, 21px);
+  font-weight: 900;
+  line-height: 1;
 }
 
-/* 内容を載せるカード */
-.card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-top: 4px solid #b91c1c;
+/* ===== 三本線メニュー ===== */
+
+.menu-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  padding: 0;
+  border: 1.5px solid var(--line);
   border-radius: 18px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  background: var(--white);
+  color: var(--black);
+  cursor: pointer;
 }
-  </style>
+
+.menu-icon {
+  display: block;
+  font-size: 33px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.menu-button:hover {
+  background: #f9fafb;
+}
+
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: min(310px, calc(100vw - 32px));
+  padding: 12px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 18px 45px rgba(0,0,0,.16);
+}
+
+.menu-panel[hidden] {
+  display: none;
+}
+
+.menu-panel a {
+  display: block;
+  padding: 15px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+.menu-panel a:hover,
+.menu-panel a:focus-visible {
+  background: #f5f6f8;
+}
+
+.menu-panel a[aria-current="page"] {
+  color: var(--red);
+  background: #fff1f2;
+}
+
+/* ===== メイン ===== */
+
+main {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 48px 20px 80px;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: .22em;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 6vw, 44px);
+  font-weight: 850;
+  line-height: 1.4;
+}
+
+.lead {
+  margin: 0 0 42px;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+/* ===== 共通カード ===== */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 32px;
+  padding: 26px 26px 26px 32px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid #b91c1c;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.07);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: var(--red);
+}
+
+.notice {
+  margin: 0;
+  color: #3f4650;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+/* ===== ランク表 ===== */
+
+.table-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid #b91c1c;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.07);
+}
+
+.table-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: var(--red);
+  z-index: 1;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+}
+
+th, td {
+  padding: 17px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+th {
+  background: #fafafa;
+  color: var(--gray);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+td {
+  font-size: 15px;
+  color: var(--black);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rank {
+  font-size: 17px;
+  font-weight: 850;
+}
+
+.rank-x {
+  color: #a00018;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.footer-note {
+  margin: 48px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--gray);
+  font-size: 12px;
+  text-align: center;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+
+/* ===== スマートフォン対応 ===== */
+
+@media (max-width: 480px) {
+  .site-header {
+    min-height: 78px;
+    padding: 12px 16px;
+  }
+
+  .brand-main {
+    font-size: 32px;
+  }
+
+  .brand-sub {
+    font-size: 15px;
+  }
+
+  .menu-button {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+  }
+
+  .menu-icon {
+    font-size: 30px;
+  }
+
+  main {
+    padding: 36px 16px 64px;
+  }
+
+  .card {
+    padding: 22px 20px 22px 26px;
+    border-radius: 18px;
+  }
+
+  .notice {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 15px 8px;
+    font-size: 13px;
+  }
+
+  .rank {
+    font-size: 16px;
+  }
+
+  .rank-x {
+    font-size: 20px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<header>
+<!-- ===== 共通ヘッダー ===== -->
+
+<header class="site-header">
+
+  <a class="brand" href="index.html"
+     aria-label="魔王杯 大会概要へ">
+    <span class="brand-main">MOC</span>
+    <span class="brand-sub">魔王杯</span>
+  </a>
 
   <div class="menu-wrap">
 
     <button
-      class="menu"
+      class="menu-button"
       id="menuButton"
-      aria-expanded="false"
+      type="button"
       aria-label="メニュー"
-    >
-      ☰
+      aria-expanded="false"
+      aria-controls="menuPanel">
+      <span class="menu-icon" aria-hidden="true">☰</span>
     </button>
 
-    <nav class="nav-menu" id="navMenu">
+    <nav class="menu-panel"
+         id="menuPanel"
+         aria-label="サイト内メニュー"
+         hidden>
+
       <a href="index.html">大会概要</a>
-      <a href="regulations.html">レギュレーション</a>
-      <a href="results.html">歴代魔王杯成績</a>
-      <a href="rating.html">M Rating</a>
+
+      <a href="regulations.html">
+        レギュレーション
+      </a>
+
+      <a href="contributors/">
+        大会協力
+      </a>
+
+      <a href="champions.html">
+        歴代優勝チーム
+      </a>
+
+      <a href="results.html">
+        魔王杯 歴代ベスト16
+      </a>
+
+      <a href="rating.html"
+         aria-current="page">
+        M Rating
+      </a>
+
     </nav>
 
   </div>
 
 </header>
 
+<!-- ===== M Rating ===== -->
+
 <main>
 
-  <p class="eyebrow">M RATING</p>
+  <p class="kicker">M RATING</p>
 
   <h1>M Rating</h1>
 
+  <p class="lead">
+    魔王杯独自のレーティング指標。
+  </p>
+
   <div class="card">
-    <p class="notice">魔王杯独自の算出方法に基づく評価指標。</p>
+    <p class="notice">
+      魔王杯独自の算出方法に基づく評価指標。
+    </p>
   </div>
 
-  <div class="table-card">
+  <!-- ===== ランク表 ===== -->
 
+  <div class="table-card">
     <div class="table-wrap">
 
       <table>
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Point</th>
+            <th scope="col">基準レート</th>
+          </tr>
+        </thead>
 
-        <tr>
-          <th>Rank</th>
-          <th>Point</th>
-          <th>基準レート</th>
-        </tr>
+        <tbody>
 
-        <tr>
-          <td class="rank rank-x">X</td>
-          <td>310以上</td>
-          <td>35,030以上</td>
-        </tr>
+          <tr>
+            <td class="rank rank-x">X</td>
+            <td>310以上</td>
+            <td>35,030以上</td>
+          </tr>
 
-        <tr><td class="rank">S1</td><td>300〜309.99</td><td>33,900〜</td></tr>
-        <tr><td class="rank">S2</td><td>290〜299.99</td><td>32,770〜</td></tr>
-        <tr><td class="rank">S3</td><td>280〜289.99</td><td>31,640〜</td></tr>
-        <tr><td class="rank">S4</td><td>270〜279.99</td><td>30,510〜</td></tr>
-        <tr><td class="rank">S5</td><td>260〜269.99</td><td>29,380〜</td></tr>
-        <tr><td class="rank">S6</td><td>250〜259.99</td><td>28,250〜</td></tr>
+          <tr>
+            <td class="rank">S1</td>
+            <td>300〜309.99</td>
+            <td>33,900〜</td>
+          </tr>
+          <tr>
+            <td class="rank">S2</td>
+            <td>290〜299.99</td>
+            <td>32,770〜</td>
+          </tr>
+          <tr>
+            <td class="rank">S3</td>
+            <td>280〜289.99</td>
+            <td>31,640〜</td>
+          </tr>
+          <tr>
+            <td class="rank">S4</td>
+            <td>270〜279.99</td>
+            <td>30,510〜</td>
+          </tr>
+          <tr>
+            <td class="rank">S5</td>
+            <td>260〜269.99</td>
+            <td>29,380〜</td>
+          </tr>
+          <tr>
+            <td class="rank">S6</td>
+            <td>250〜259.99</td>
+            <td>28,250〜</td>
+          </tr>
 
-        <tr><td class="rank">A1</td><td>240〜249.99</td><td>27,120〜</td></tr>
-        <tr><td class="rank">A2</td><td>230〜239.99</td><td>25,990〜</td></tr>
-        <tr><td class="rank">A3</td><td>220〜229.99</td><td>24,860〜</td></tr>
-        <tr><td class="rank">A4</td><td>210〜219.99</td><td>23,730〜</td></tr>
-        <tr><td class="rank">A5</td><td>200〜209.99</td><td>22,600〜</td></tr>
-        <tr><td class="rank">A6</td><td>190〜199.99</td><td>21,470〜</td></tr>
+          <tr>
+            <td class="rank">A1</td>
+            <td>240〜249.99</td>
+            <td>27,120〜</td>
+          </tr>
+          <tr>
+            <td class="rank">A2</td>
+            <td>230〜239.99</td>
+            <td>25,990〜</td>
+          </tr>
+          <tr>
+            <td class="rank">A3</td>
+            <td>220〜229.99</td>
+            <td>24,860〜</td>
+          </tr>
+          <tr>
+            <td class="rank">A4</td>
+            <td>210〜219.99</td>
+            <td>23,730〜</td>
+          </tr>
+          <tr>
+            <td class="rank">A5</td>
+            <td>200〜209.99</td>
+            <td>22,600〜</td>
+          </tr>
+          <tr>
+            <td class="rank">A6</td>
+            <td>190〜199.99</td>
+            <td>21,470〜</td>
+          </tr>
 
-        <tr><td class="rank">B1</td><td>180〜189.99</td><td>20,340〜</td></tr>
-        <tr><td class="rank">B2</td><td>170〜179.99</td><td>19,210〜</td></tr>
-        <tr><td class="rank">B3</td><td>160〜169.99</td><td>18,080〜</td></tr>
-        <tr><td class="rank">B4</td><td>150〜159.99</td><td>16,950〜</td></tr>
-        <tr><td class="rank">B5</td><td>140〜149.99</td><td>15,820〜</td></tr>
-        <tr><td class="rank">B6</td><td>130〜139.99</td><td>14,690〜</td></tr>
+          <tr>
+            <td class="rank">B1</td>
+            <td>180〜189.99</td>
+            <td>20,340〜</td>
+          </tr>
+          <tr>
+            <td class="rank">B2</td>
+            <td>170〜179.99</td>
+            <td>19,210〜</td>
+          </tr>
+          <tr>
+            <td class="rank">B3</td>
+            <td>160〜169.99</td>
+            <td>18,080〜</td>
+          </tr>
+          <tr>
+            <td class="rank">B4</td>
+            <td>150〜159.99</td>
+            <td>16,950〜</td>
+          </tr>
+          <tr>
+            <td class="rank">B5</td>
+            <td>140〜149.99</td>
+            <td>15,820〜</td>
+          </tr>
+          <tr>
+            <td class="rank">B6</td>
+            <td>130〜139.99</td>
+            <td>14,690〜</td>
+          </tr>
 
-        <tr><td class="rank">C1</td><td>120〜129.99</td><td>13,560〜</td></tr>
-        <tr><td class="rank">C2</td><td>110〜119.99</td><td>12,430〜</td></tr>
-        <tr><td class="rank">C3</td><td>100〜109.99</td><td>11,300〜</td></tr>
-        <tr><td class="rank">C4</td><td>90〜99.99</td><td>10,170〜</td></tr>
-        <tr><td class="rank">C5</td><td>80〜89.99</td><td>9,040〜</td></tr>
-        <tr><td class="rank">C6</td><td>70〜79.99</td><td>7,910〜</td></tr>
+          <tr>
+            <td class="rank">C1</td>
+            <td>120〜129.99</td>
+            <td>13,560〜</td>
+          </tr>
+          <tr>
+            <td class="rank">C2</td>
+            <td>110〜119.99</td>
+            <td>12,430〜</td>
+          </tr>
+          <tr>
+            <td class="rank">C3</td>
+            <td>100〜109.99</td>
+            <td>11,300〜</td>
+          </tr>
+          <tr>
+            <td class="rank">C4</td>
+            <td>90〜99.99</td>
+            <td>10,170〜</td>
+          </tr>
+          <tr>
+            <td class="rank">C5</td>
+            <td>80〜89.99</td>
+            <td>9,040〜</td>
+          </tr>
+          <tr>
+            <td class="rank">C6</td>
+            <td>70〜79.99</td>
+            <td>7,910〜</td>
+          </tr>
 
-        <tr><td class="rank">D1</td><td>60〜69.99</td><td>6,780〜</td></tr>
-        <tr><td class="rank">D2</td><td>50〜59.99</td><td>5,650〜</td></tr>
-        <tr><td class="rank">D3</td><td>40〜49.99</td><td>4,520〜</td></tr>
-        <tr><td class="rank">D4</td><td>30〜39.99</td><td>3,390〜</td></tr>
-        <tr><td class="rank">D5</td><td>20〜29.99</td><td>2,260〜</td></tr>
-        <tr><td class="rank">D6</td><td>20未満</td><td>2,260未満</td></tr>
+          <tr>
+            <td class="rank">D1</td>
+            <td>60〜69.99</td>
+            <td>6,780〜</td>
+          </tr>
+          <tr>
+            <td class="rank">D2</td>
+            <td>50〜59.99</td>
+            <td>5,650〜</td>
+          </tr>
+          <tr>
+            <td class="rank">D3</td>
+            <td>40〜49.99</td>
+            <td>4,520〜</td>
+          </tr>
+          <tr>
+            <td class="rank">D4</td>
+            <td>30〜39.99</td>
+            <td>3,390〜</td>
+          </tr>
+          <tr>
+            <td class="rank">D5</td>
+            <td>20〜29.99</td>
+            <td>2,260〜</td>
+          </tr>
+          <tr>
+            <td class="rank">D6</td>
+            <td>20未満</td>
+            <td>2,260未満</td>
+          </tr>
 
+        </tbody>
       </table>
 
     </div>
-
   </div>
+
+  <p class="footer-note">
+    魔王杯 M Rating
+  </p>
 
 </main>
 
-<script>
-  const menuButton = document.getElementById('menuButton');
-  const navMenu = document.getElementById('navMenu');
+<!-- ===== メニュー開閉 ===== -->
 
-  menuButton.addEventListener('click', () => {
-    const isOpen = navMenu.classList.toggle('open');
-    menuButton.setAttribute('aria-expanded', isOpen);
+<script>
+(function () {
+  const button = document.getElementById("menuButton");
+  const panel = document.getElementById("menuPanel");
+
+  function closeMenu() {
+    panel.hidden = true;
+    button.setAttribute("aria-expanded", "false");
+  }
+
+  button.addEventListener("click", function () {
+    const willOpen = panel.hidden;
+    panel.hidden = !willOpen;
+    button.setAttribute(
+      "aria-expanded",
+      String(willOpen)
+    );
   });
 
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.menu-wrap')) {
-      navMenu.classList.remove('open');
-      menuButton.setAttribute('aria-expanded','false');
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest(".menu-wrap")) {
+      closeMenu();
     }
   });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+      button.focus();
+    }
+  });
+})();
 </script>
 
 </body>
