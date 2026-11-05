@@ -19,7 +19,7 @@
   --black: #171717;
   --gray: #737b8b;
   --red: #ef233c;
-  --blue: #0866ff;
+  --blue: #0047cc;
   --line: #e2e4e8;
 }
 
@@ -75,75 +75,59 @@ a {
   line-height: 1;
 }
 
-/* ===== 三本線メニュー ===== */
+/* ===== 共通三本線メニュー ===== */
 
 .menu-wrap {
   position: relative;
   flex-shrink: 0;
 }
 
-.menu-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 62px;
-  height: 62px;
-  padding: 0;
-  border: 1.5px solid var(--line);
-  border-radius: 18px;
-  background: var(--white);
-  color: var(--black);
+.menu {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #171717;
+  font-size: 23px;
   cursor: pointer;
 }
 
-.menu-icon {
-  display: block;
-  font-size: 33px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.menu-button:hover {
-  background: #f9fafb;
-}
-
-.menu-panel {
-  position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
-  width: min(310px, calc(100vw - 32px));
-  padding: 12px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  box-shadow: 0 18px 45px rgba(0,0,0,.16);
-}
-
-.menu-panel[hidden] {
+.nav-menu {
   display: none;
+  position: absolute;
+  right: 0;
+  top: 52px;
+  min-width: 200px;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.35);
 }
 
-.menu-panel a {
+.nav-menu.open {
   display: block;
-  padding: 15px 16px;
-  border-radius: 12px;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 9px;
+  color: #171717;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 750;
-  overflow-wrap: anywhere;
+  font-size: 14px;
+  font-weight: 700;
 }
 
-.menu-panel a:hover,
-.menu-panel a:focus-visible {
-  background: var(--bg);
+.nav-menu a:hover,
+.nav-menu a:focus {
+  background: #fef2f2;
+  color: #dc2626;
+  outline: none;
 }
 
-.menu-panel a[aria-current="page"] {
-  color: var(--red);
-  background: #fff1f2;
-}
-
-/* ===== 大会協力ページ ===== */
+/* ===== メイン ===== */
 
 main {
   padding: 32px 16px 64px;
@@ -154,13 +138,14 @@ main {
   margin: 0 auto;
 }
 
+/* ===== 全体の外枠 ===== */
+
 .card {
-  background: #fff;
-  border: 5px solid var(--blue);
+  background: #ffffff;
+  border: 6px solid var(--blue);
   border-radius: 32px;
-  padding: 42px 36px;
+  padding: 32px 30px;
   box-shadow: 0 8px 28px rgba(0,0,0,.06);
-  overflow-wrap: anywhere;
 }
 
 h1 {
@@ -175,38 +160,92 @@ h1 {
   text-align: center;
   color: var(--gray);
   font-size: 14px;
-  margin: 16px 0 30px;
+  margin: 12px 0 24px;
 }
+
+/* ===== 協力コミュニティカード ===== */
 
 .entry {
-  padding: 25px 0;
-  border-top: 2px solid var(--blue);
+  margin-bottom: 16px;
+  padding: 20px;
+  border: 2px solid var(--blue);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(0,71,204,.06);
+  overflow-wrap: anywhere;
 }
+
+.entry:last-of-type {
+  margin-bottom: 22px;
+}
+
+/* ===== コミュニティ名 ===== */
 
 .label {
-  color: var(--gray);
-  font-size: 13px;
   margin: 0 0 5px;
-}
-
-.value {
-  font-size: 19px;
-  font-weight: 700;
-  margin: 0 0 16px;
-}
-
-.value:last-child {
-  margin-bottom: 0;
-}
-
-.account {
-  font-size: 16px;
+  color: var(--gray);
+  font-size: 12px;
   font-weight: 600;
 }
 
+.community {
+  margin: 0 0 16px;
+  color: var(--black);
+  font-size: 21px;
+  font-weight: 850;
+  line-height: 1.5;
+}
+
+/* ===== 区切り線 ===== */
+
+.entry-divider {
+  height: 2px;
+  margin: 0 0 15px;
+  background: var(--blue);
+  border: 0;
+}
+
+/* ===== 大会協力者 ===== */
+
+.contributor-label {
+  margin: 0 0 6px;
+  color: var(--gray);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* アイコンなし・名前を強調 */
+
+.contributor-name {
+  margin: 0 0 12px;
+  color: var(--black);
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+/* ===== Xアカウント ===== */
+
+.account-label {
+  margin: 6px 0 3px;
+  color: var(--gray);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.account {
+  margin: 0;
+  color: var(--blue);
+  font-size: 15px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* ===== 注記 ===== */
+
 .note {
-  border-top: 2px solid var(--blue);
-  padding-top: 20px;
+  border-top: 3px solid var(--blue);
+  padding-top: 16px;
   margin: 0;
   font-size: 12px;
   color: var(--gray);
@@ -234,32 +273,29 @@ button:focus-visible {
     font-size: 15px;
   }
 
-  .menu-button {
-    width: 54px;
-    height: 54px;
-    border-radius: 16px;
-  }
-
-  .menu-icon {
-    font-size: 30px;
-  }
-
   main {
     padding: 18px 12px 48px;
   }
 
   .card {
-    border-width: 4px;
+    border-width: 5px;
     border-radius: 25px;
-    padding: 28px 20px;
+    padding: 24px 15px;
   }
 
   .entry {
-    padding: 22px 0;
+    padding: 16px 14px;
+    margin-bottom: 13px;
+    border-radius: 15px;
   }
 
-  .value {
-    font-size: 17px;
+  .community {
+    font-size: 18px;
+    margin-bottom: 13px;
+  }
+
+  .contributor-name {
+    font-size: 25px;
   }
 }
 </style>
@@ -271,9 +307,10 @@ button:focus-visible {
 
 <header class="site-header">
 
-  <a class="brand"
-     href="../index.html"
-     aria-label="魔王杯 大会概要へ">
+  <a
+    class="brand"
+    href="../index.html"
+    aria-label="魔王杯 大会概要へ">
     <span class="brand-main">MOC</span>
     <span class="brand-sub">魔王杯</span>
   </a>
@@ -281,44 +318,24 @@ button:focus-visible {
   <div class="menu-wrap">
 
     <button
-      class="menu-button"
+      class="menu"
       id="menuButton"
       type="button"
       aria-label="メニュー"
       aria-expanded="false"
-      aria-controls="menuPanel">
-      <span class="menu-icon"
-            aria-hidden="true">☰</span>
-    </button>
+      aria-controls="navMenu">☰</button>
 
-    <nav class="menu-panel"
-         id="menuPanel"
-         aria-label="サイト内メニュー"
-         hidden>
+    <nav
+      class="nav-menu"
+      id="navMenu"
+      aria-label="サイトメニュー">
 
-      <a href="../index.html">
-        大会概要
-      </a>
-
-      <a href="../regulations.html">
-        レギュレーション
-      </a>
-
-      <a href="./" aria-current="page">
-        大会協力
-      </a>
-
-      <a href="../champions.html">
-        歴代優勝チーム
-      </a>
-
-      <a href="../results.html">
-        魔王杯 歴代ベスト16
-      </a>
-
-      <a href="../rating.html">
-        M Rating
-      </a>
+      <a href="../index.html">大会概要</a>
+      <a href="../regulations.html">レギュレーション</a>
+      <a href="./">大会協力</a>
+      <a href="../champions.html">歴代優勝チーム</a>
+      <a href="../results.html">魔王杯　歴代ベスト16</a>
+      <a href="../rating.html">M Rating</a>
 
     </nav>
 
@@ -341,105 +358,99 @@ button:focus-visible {
     <!-- 1. まったり王国 -->
 
     <section class="entry">
-      <p class="label">
-        協力コミュニティ
-      </p>
-      <p class="value">まったり王国</p>
+      <p class="label">協力コミュニティ</p>
+      <h2 class="community">まったり王国</h2>
 
-      <p class="label">
-        管理者
+      <hr class="entry-divider">
+
+      <p class="contributor-label">
+        大会協力者（管理者）
       </p>
-      <p class="value">でみ</p>
+      <p class="contributor-name">でみ</p>
     </section>
 
     <!-- 2. ブロスタ初心者 -->
 
     <section class="entry">
-      <p class="label">
-        協力コミュニティ
-      </p>
-      <p class="value">ブロスタ初心者</p>
+      <p class="label">協力コミュニティ</p>
+      <h2 class="community">ブロスタ初心者</h2>
 
-      <p class="label">
-        管理者
+      <hr class="entry-divider">
+
+      <p class="contributor-label">
+        大会協力者（管理者）
       </p>
-      <p class="value">さんでぃ</p>
+      <p class="contributor-name">さんでぃ</p>
     </section>
 
     <!-- 3. トロ上げ・ガチバト -->
 
     <section class="entry">
-      <p class="label">
-        協力コミュニティ
-      </p>
-      <p class="value">
+      <p class="label">協力コミュニティ</p>
+      <h2 class="community">
         ブロスタ 〜トロ上げ・ガチバトお手伝い〜
-      </p>
+      </h2>
 
-      <p class="label">
-        管理者
-      </p>
-      <p class="value">かぐや</p>
+      <hr class="entry-divider">
 
-      <p class="label">X（旧Twitter）</p>
-      <p class="value account">@kaguya_bs</p>
+      <p class="contributor-label">
+        大会協力者（管理者）
+      </p>
+      <p class="contributor-name">かぐや</p>
+
+      <p class="account-label">X（旧Twitter）</p>
+      <p class="account">@kaguya_bs</p>
     </section>
 
     <!-- 4. ブロスタ交流隊 -->
 
     <section class="entry">
-      <p class="label">
-        協力コミュニティ
-      </p>
-      <p class="value">【ブロスタ交流隊】</p>
+      <p class="label">協力コミュニティ</p>
+      <h2 class="community">【ブロスタ交流隊】</h2>
 
-      <p class="label">
-        管理者
-      </p>
-      <p class="value">こるてぃん</p>
+      <hr class="entry-divider">
 
-      <p class="label">X（旧Twitter）</p>
-      <p class="value account">@colthin_bs</p>
+      <p class="contributor-label">
+        大会協力者（管理者）
+      </p>
+      <p class="contributor-name">こるてぃん</p>
+
+      <p class="account-label">X（旧Twitter）</p>
+      <p class="account">@colthin_bs</p>
     </section>
 
     <!-- 5. ブロスタ えんじょい！！ -->
 
     <section class="entry">
-      <p class="label">
-        協力コミュニティ
-      </p>
-      <p class="value">
-        ブロスタ えんじょい！！
-      </p>
+      <p class="label">協力コミュニティ</p>
+      <h2 class="community">ブロスタ えんじょい！！</h2>
 
-      <p class="label">
-        管理者
-      </p>
-      <p class="value">けろろ</p>
+      <hr class="entry-divider">
 
-      <p class="label">X（旧Twitter）</p>
-      <p class="value account">@Keroro0v0</p>
+      <p class="contributor-label">
+        大会協力者（管理者）
+      </p>
+      <p class="contributor-name">けろろ</p>
+
+      <p class="account-label">X（旧Twitter）</p>
+      <p class="account">@Keroro0v0</p>
     </section>
 
     <!-- 6. (仮) ブロスタオプチャ -->
 
     <section class="entry">
-      <p class="label">
-        協力コミュニティ
-      </p>
-      <p class="value">
-        (仮) ブロスタオプチャ
-      </p>
+      <p class="label">協力コミュニティ</p>
+      <h2 class="community">(仮) ブロスタオプチャ</h2>
 
-      <p class="label">
-        管理者
-      </p>
-      <p class="value">どどんが</p>
+      <hr class="entry-divider">
 
-      <p class="label">X（旧Twitter）</p>
-      <p class="value account">
-        @hiro_brawlstars
+      <p class="contributor-label">
+        大会協力者（管理者）
       </p>
+      <p class="contributor-name">どどんが</p>
+
+      <p class="account-label">X（旧Twitter）</p>
+      <p class="account">@hiro_brawlstars</p>
     </section>
 
     <p class="note">※敬称略</p>
@@ -451,45 +462,20 @@ button:focus-visible {
 <!-- ===== メニュー開閉 ===== -->
 
 <script>
-(function () {
-  const button =
-    document.getElementById("menuButton");
+const menuButton = document.getElementById('menuButton');
+const navMenu = document.getElementById('navMenu');
 
-  const panel =
-    document.getElementById("menuPanel");
+menuButton.addEventListener('click', () => {
+  const isOpen = navMenu.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+});
 
-  function closeMenu() {
-    panel.hidden = true;
-    button.setAttribute(
-      "aria-expanded",
-      "false"
-    );
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.menu-wrap')) {
+    navMenu.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
   }
-
-  button.addEventListener("click", function () {
-    const willOpen = panel.hidden;
-
-    panel.hidden = !willOpen;
-
-    button.setAttribute(
-      "aria-expanded",
-      String(willOpen)
-    );
-  });
-
-  document.addEventListener("click", function (event) {
-    if (!event.target.closest(".menu-wrap")) {
-      closeMenu();
-    }
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && !panel.hidden) {
-      closeMenu();
-      button.focus();
-    }
-  });
-})();
+});
 </script>
 
 </body>
