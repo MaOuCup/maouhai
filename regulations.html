@@ -7,118 +7,15 @@
 <meta name="theme-color" content="#ffffff">
 <title>レギュレーション｜魔王杯</title>
 
-<style>
-* {
-  box-sizing: border-box;
-}
-
-:root {
-  color-scheme: light;
-  --bg: #f5f6f8;
-  --white: #ffffff;
-  --black: #171717;
-  --gray: #6b7280;
-  --red: #ef233c;
-  --line: #e2e4e8;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--black);
-  font-family: -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Noto Sans JP", sans-serif;
-  line-height: 1.8;
-}
-
-a {
-  color: inherit;
-}
-
-/* ===== 共通ヘッダー ===== */
-
-.site-header {
-  position: relative;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 90px;
-  padding: 16px 6%;
-  background: var(--white);
-  border-bottom: 1px solid var(--line);
-}
-
-.brand {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.brand-main {
-  color: #171717;
-  font-size: clamp(32px, 7vw, 48px);
-  font-weight: 900;
-  letter-spacing: -0.055em;
-  line-height: 1;
-}
-
-.brand-sub {
-  color: #ef233c;
-  font-size: clamp(15px, 3.3vw, 21px);
-  font-weight: 900;
-  line-height: 1;
-}
-
-/* ===== 共通メニュー ===== */
-
-.menu-wrap {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.menu-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 62px;
-  height: 62px;
-  padding: 0;
-  border: 1.5px solid var(--line);
-  border-radius: 18px;
-  background: var(--white);
-  color: var(--black);
-  cursor: pointer;
-}
-
-.menu-icon {
-  display: block;
-  font-size: 33px;
-  font-weight: 700;
-  line-height: 1;
-}
-
+</style>
 .menu-button:hover {
   background: #f9fafb;
 }
 
+/* ここから変更 */
 .menu-panel {
   position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
-  width: min(310px, calc(100vw - 32px));
-  padding: 12px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.16);
+  ...
 }
 
 .menu-panel[hidden] {
@@ -126,188 +23,15 @@ a {
 }
 
 .menu-panel a {
-  display: block;
-  padding: 15px 16px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 750;
-  overflow-wrap: anywhere;
+  ...
 }
+/* ここまで変更 */
 
 .menu-panel a:hover,
 .menu-panel a:focus-visible {
   background: #f5f6f8;
 }
 
-.menu-panel a[aria-current="page"] {
-  color: var(--red);
-  background: #fff1f2;
-}
-
-/* ===== メインコンテンツ ===== */
-
-main {
-  width: 100%;
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 48px 20px 80px;
-}
-
-.kicker {
-  margin: 0 0 10px;
-  color: var(--red);
-  font-size: 13px;
-  font-weight: 850;
-  letter-spacing: 0.22em;
-}
-
-h1 {
-  margin: 0 0 16px;
-  font-size: clamp(30px, 6vw, 44px);
-  font-weight: 850;
-  line-height: 1.4;
-  overflow-wrap: anywhere;
-}
-
-.lead {
-  margin: 0 0 42px;
-  color: var(--gray);
-  font-size: 14px;
-}
-
-.rule-section {
-  margin-top: 34px;
-}
-
-.section-title {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin: 0 0 14px;
-  font-size: 21px;
-  font-weight: 800;
-  line-height: 1.5;
-}
-
-.number {
-  color: var(--red);
-  font-size: 14px;
-  font-weight: 850;
-}
-
-/* ===== 共通カード ===== */
-
-.card {
-  position: relative;
-  overflow: hidden;
-  padding: 26px 26px 26px 32px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-top: 4px solid #b91c1c;
-  border-radius: 20px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.07);
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 5px;
-  background: var(--red);
-}
-
-.single {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 650;
-}
-
-.rules {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.rules li {
-  padding: 15px 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 14px;
-  overflow-wrap: anywhere;
-}
-
-.rules li:first-child {
-  padding-top: 0;
-}
-
-.rules li:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.term {
-  display: block;
-  margin-bottom: 4px;
-  color: var(--black);
-  font-weight: 800;
-}
-
-.footer-note {
-  margin: 50px 0 0;
-  padding-top: 22px;
-  border-top: 1px solid var(--line);
-  color: var(--gray);
-  font-size: 12px;
-  text-align: center;
-}
-
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 4px;
-}
-
-/* ===== スマートフォン対応 ===== */
-
-@media (max-width: 480px) {
-  .site-header {
-    min-height: 78px;
-    padding: 12px 16px;
-  }
-
-  .brand-main {
-    font-size: 32px;
-  }
-
-  .brand-sub {
-    font-size: 15px;
-  }
-
-  .menu-button {
-    width: 54px;
-    height: 54px;
-    border-radius: 16px;
-  }
-
-  .menu-icon {
-    font-size: 30px;
-  }
-
-  main {
-    padding: 36px 16px 64px;
-  }
-
-  .section-title {
-    font-size: 19px;
-  }
-
-  .card {
-    padding: 22px 20px 22px 26px;
-    border-radius: 18px;
-  }
-}
 </style>
 </head>
 
