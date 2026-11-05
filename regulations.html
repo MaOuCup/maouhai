@@ -76,71 +76,56 @@ a {
   line-height: 1;
 }
 
-/* 共通メニュー */
+/* index.html と同じメニュー */
 
 .menu-wrap {
   position: relative;
   flex-shrink: 0;
 }
 
-.menu-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 62px;
-  height: 62px;
-  padding: 0;
-  border: 1.5px solid var(--border);
-  border-radius: 18px;
-  background: var(--white);
-  color: var(--black);
+.menu {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #171717;
+  font-size: 23px;
   cursor: pointer;
 }
 
-.menu-icon {
-  display: block;
-  font-size: 33px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.menu-panel {
-  position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
-  width: min(260px, calc(100vw - 32px));
-  padding: 8px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  box-shadow: 0 18px 45px rgba(0,0,0,.16);
-  z-index: 100;
-}
-
-.menu-panel[hidden] {
+.nav-menu {
   display: none;
+  position: absolute;
+  right: 0;
+  top: 52px;
+  min-width: 200px;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.35);
 }
 
-.menu-panel a {
+.nav-menu.open {
   display: block;
-  padding: 11px 14px;
-  border-radius: 12px;
-  color: var(--black);
-  font-size: 14px;
-  font-weight: 750;
-  line-height: 1.5;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 9px;
+  color: #171717;
   text-decoration: none;
-  overflow-wrap: anywhere;
+  font-size: 14px;
+  font-weight: 700;
 }
 
-.menu-panel a:hover,
-.menu-panel a:focus-visible {
-  background: #f5f6f8;
-}
-
-.menu-panel a[aria-current="page"] {
-  color: var(--red);
-  background: #fff1f2;
+.nav-menu a:hover,
+.nav-menu a:focus {
+  background: #fef2f2;
+  color: #dc2626;
+  outline: none;
 }
 
 /* ページ本文 */
@@ -270,16 +255,6 @@ h1 {
     font-size: 15px;
   }
 
-  .menu-button {
-    width: 54px;
-    height: 54px;
-    border-radius: 16px;
-  }
-
-  .menu-icon {
-    font-size: 30px;
-  }
-
   main {
     padding: 34px 16px 64px;
   }
@@ -311,26 +286,22 @@ h1 {
 
   <div class="menu-wrap">
     <button
-      class="menu-button"
+      class="menu"
       id="menuButton"
       type="button"
       aria-label="メニュー"
       aria-expanded="false"
-      aria-controls="menuPanel">
-      <span class="menu-icon" aria-hidden="true">☰</span>
-    </button>
+      aria-controls="navMenu">☰</button>
 
     <nav
-      class="menu-panel"
-      id="menuPanel"
-      aria-label="サイト内メニュー"
-      hidden>
+      class="nav-menu"
+      id="navMenu"
+      aria-label="サイトメニュー">
       <a href="index.html">大会概要</a>
-      <a href="regulations.html"
-         aria-current="page">レギュレーション</a>
-      <a href="contributors/">大会協力</a>
+      <a href="regulations.html">レギュレーション</a>
+      <a href="contributors">大会協力</a>
       <a href="champions.html">歴代優勝チーム</a>
-      <a href="results.html">魔王杯 歴代ベスト16</a>
+      <a href="results.html">魔王杯　歴代ベスト16</a>
       <a href="rating.html">M Rating</a>
     </nav>
   </div>
@@ -532,37 +503,20 @@ h1 {
 </main>
 
 <script>
-(function () {
-  const button = document.getElementById("menuButton");
-  const panel = document.getElementById("menuPanel");
+const menuButton = document.getElementById('menuButton');
+const navMenu = document.getElementById('navMenu');
 
-  function closeMenu() {
-    panel.hidden = true;
-    button.setAttribute("aria-expanded", "false");
+menuButton.addEventListener('click', () => {
+  const isOpen = navMenu.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+});
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.menu-wrap')) {
+    navMenu.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
   }
-
-  button.addEventListener("click", function () {
-    const willOpen = panel.hidden;
-    panel.hidden = !willOpen;
-    button.setAttribute(
-      "aria-expanded",
-      String(willOpen)
-    );
-  });
-
-  document.addEventListener("click", function (event) {
-    if (!event.target.closest(".menu-wrap")) {
-      closeMenu();
-    }
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closeMenu();
-      button.focus();
-    }
-  });
-})();
+});
 </script>
 
 </body>
