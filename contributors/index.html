@@ -28,9 +28,8 @@ body {
   background: var(--bg);
   color: var(--black);
   font-family: -apple-system, BlinkMacSystemFont,
-    "Hiragino Kaku Gothic ProN", "Noto Sans JP",
-    "Yu Gothic", sans-serif;
-  line-height: 1.7;
+    "Segoe UI", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
 }
 
 a {
@@ -69,7 +68,7 @@ a {
 }
 
 .brand-sub {
-  color: var(--red);
+  color: #ef233c;
   font-size: clamp(15px, 3.3vw, 21px);
   font-weight: 900;
   line-height: 1;
@@ -179,17 +178,21 @@ h1 {
   margin-bottom: 22px;
 }
 
-/* ===== コミュニティ名 ===== */
+/* ===== 項目ラベル ===== */
 
-.label {
+.label,
+.contributor-label {
   margin: 0 0 5px;
   color: var(--gray);
   font-size: 12px;
   font-weight: 600;
 }
 
-.community {
-  margin: 0 0 16px;
+/* ===== コミュニティ名・管理者名 共通 ===== */
+
+.community,
+.contributor-name {
+  margin: 0;
   color: var(--black);
   font-size: 21px;
   font-weight: 850;
@@ -200,34 +203,15 @@ h1 {
 
 .entry-divider {
   height: 2px;
-  margin: 0 0 15px;
+  margin: 16px 0;
   background: var(--blue);
   border: 0;
-}
-
-/* ===== 大会協力者 ===== */
-
-.contributor-label {
-  margin: 0 0 6px;
-  color: var(--gray);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-/* アイコンなし・名前を強調 */
-
-.contributor-name {
-  margin: 0 0 12px;
-  color: var(--black);
-  font-size: 27px;
-  font-weight: 900;
-  line-height: 1.4;
 }
 
 /* ===== Xアカウント ===== */
 
 .account-label {
-  margin: 6px 0 3px;
+  margin: 12px 0 3px;
   color: var(--gray);
   font-size: 12px;
   font-weight: 600;
@@ -259,7 +243,7 @@ button:focus-visible {
 
 /* ===== スマートフォン対応 ===== */
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .site-header {
     min-height: 78px;
     padding: 12px 16px;
@@ -289,13 +273,13 @@ button:focus-visible {
     border-radius: 15px;
   }
 
-  .community {
+  .community,
+  .contributor-name {
     font-size: 18px;
-    margin-bottom: 13px;
   }
 
-  .contributor-name {
-    font-size: 25px;
+  .entry-divider {
+    margin: 13px 0;
   }
 }
 </style>
