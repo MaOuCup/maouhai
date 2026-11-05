@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -124,6 +125,59 @@
       letter-spacing: 2px;
     }
 
+    /* index.html と同じメニュー */
+    .menu-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .menu {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #171717;
+      font-size: 23px;
+      cursor: pointer;
+    }
+
+    .nav-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 52px;
+      min-width: 200px;
+      padding: 8px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      box-shadow: 0 14px 35px rgba(0,0,0,.35);
+      z-index: 100;
+    }
+
+    .nav-menu.open {
+      display: block;
+    }
+
+    .nav-menu a {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 9px;
+      color: #171717;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:focus {
+      background: #fef2f2;
+      color: #dc2626;
+      outline: none;
+    }
+
     main {
       width: 100%;
       max-width: 900px;
@@ -226,7 +280,6 @@
       padding: 34px 32px 30px;
     }
 
-    /* 右上の細い斜め装飾 */
     .card-body::before {
       content: "";
       position: absolute;
@@ -420,244 +473,126 @@
         transition: none;
       }
     }
+
     /* カード全体 */
-.champion-card {
-  background: #fffdfa;
-  border: 1px solid #c9b994;
-  border-radius: 3px;
-  box-shadow:
-    0 18px 40px rgba(30, 18, 21, 0.13),
-    0 3px 8px rgba(30, 18, 21, 0.06);
-}
+    .champion-card {
+      background: #fffdfa;
+      border: 1px solid #c9b994;
+      border-radius: 3px;
+      box-shadow:
+        0 18px 40px rgba(30, 18, 21, 0.13),
+        0 3px 8px rgba(30, 18, 21, 0.06);
+    }
 
-/* 大会名の帯 */
-.card-top {
-  position: relative;
-  overflow: hidden;
-  padding: 17px 24px;
-  background: linear-gradient(
-    115deg,
-    #211b1e 0%,
-    #211b1e 65%,
-    #701725 65%,
-    #971e30 100%
-  );
-  border-bottom: 2px solid #b49a62;
-}
+    /* 大会名の帯 */
+    .card-top {
+      position: relative;
+      overflow: hidden;
+      padding: 17px 24px;
+      background: linear-gradient(
+        115deg,
+        #211b1e 0%,
+        #211b1e 65%,
+        #701725 65%,
+        #971e30 100%
+      );
+      border-bottom: 2px solid #b49a62;
+    }
 
-.edition {
-  color: #fff;
-  font-weight: 800;
-}
+    .edition {
+      color: #fff;
+      font-weight: 800;
+    }
 
-.edition-number {
-  color: #eadbb9;
-}
+    .edition-number {
+      color: #eadbb9;
+    }
 
-/* カード内部の背景 */
-.card-body {
-  isolation: isolate;
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #fffefa 55%,
-    #f1ece2 100%
-  );
-}
+    /* カード内部の背景 */
+    .card-body {
+      isolation: isolate;
+      background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #fffefa 55%,
+        #f1ece2 100%
+      );
+    }
 
-/* 右上の金の斜線 */
-.card-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    225deg,
-    #e9dfc9 0%,
-    #f5efdf 27%,
-    #aa8b4d 27%,
-    #aa8b4d 28%,
-    transparent 28%
-  );
-}
+    /* 右上の金の斜線 */
+    .card-body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(
+        225deg,
+        #e9dfc9 0%,
+        #f5efdf 27%,
+        #aa8b4d 27%,
+        #aa8b4d 28%,
+        transparent 28%
+      );
+    }
 
-/* 右下の赤・黒・金の装飾 */
-.card-body::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 88px;
-  height: 72px;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    315deg,
-    #231b1e 0%,
-    #231b1e 17%,
-    #861d2c 17%,
-    #861d2c 29%,
-    #b49a62 29%,
-    #b49a62 31%,
-    transparent 31%
-  );
-}
+    /* 右下の赤・黒・金の装飾 */
+    .card-body::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 88px;
+      height: 72px;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(
+        315deg,
+        #231b1e 0%,
+        #231b1e 17%,
+        #861d2c 17%,
+        #861d2c 29%,
+        #b49a62 29%,
+        #b49a62 31%,
+        transparent 31%
+      );
+    }
 
-.card-body {
-  padding-bottom: 48px;
-}
+    .card-body {
+      padding-bottom: 48px;
+    }
 
-.winner {
-  color: #861d2c;
-}
+    .winner {
+      color: #861d2c;
+    }
 
-.winner::before {
-  background: #a58a52;
-}
+    .winner::before {
+      background: #a58a52;
+    }
 
-.team-name {
-  color: #201b1e;
-}
+    .team-name {
+      color: #201b1e;
+    }
 
-.detail-row {
-  border-top: 1px solid #ded5c5;
-}
+    .detail-row {
+      border-top: 1px solid #ded5c5;
+    }
 
-dt {
-  color: #655b51;
-}
+    dt {
+      color: #655b51;
+    }
 
-dd {
-  color: #241e20;
-  font-weight: 800;
-}
+    dd {
+      color: #241e20;
+      font-weight: 800;
+    }
 
-.rating-rank {
-  color: #861d2c;
-}
-    /* カード全体 */
-.champion-card {
-  background: #fffdfa;
-  border: 1px solid #c9b994;
-  border-radius: 3px;
-  box-shadow:
-    0 18px 40px rgba(30, 18, 21, 0.13),
-    0 3px 8px rgba(30, 18, 21, 0.06);
-}
-
-/* 大会名の帯 */
-.card-top {
-  position: relative;
-  overflow: hidden;
-  padding: 17px 24px;
-  background: linear-gradient(
-    115deg,
-    #211b1e 0%,
-    #211b1e 65%,
-    #701725 65%,
-    #971e30 100%
-  );
-  border-bottom: 2px solid #b49a62;
-}
-
-.edition {
-  color: #fff;
-  font-weight: 800;
-}
-
-.edition-number {
-  color: #eadbb9;
-}
-
-/* カード内部の背景 */
-.card-body {
-  isolation: isolate;
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #fffefa 55%,
-    #f1ece2 100%
-  );
-}
-
-/* 右上の金の斜線 */
-.card-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    225deg,
-    #e9dfc9 0%,
-    #f5efdf 27%,
-    #aa8b4d 27%,
-    #aa8b4d 28%,
-    transparent 28%
-  );
-}
-
-/* 右下の赤・黒・金の装飾 */
-.card-body::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 88px;
-  height: 72px;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    315deg,
-    #231b1e 0%,
-    #231b1e 17%,
-    #861d2c 17%,
-    #861d2c 29%,
-    #b49a62 29%,
-    #b49a62 31%,
-    transparent 31%
-  );
-}
-
-.card-body {
-  padding-bottom: 48px;
-}
-
-.winner {
-  color: #861d2c;
-}
-
-.winner::before {
-  background: #a58a52;
-}
-
-.team-name {
-  color: #201b1e;
-}
-
-.detail-row {
-  border-top: 1px solid #ded5c5;
-}
-
-dt {
-  color: #655b51;
-}
-
-dd {
-  color: #241e20;
-  font-weight: 800;
-}
-
-.rating-rank {
-  color: #861d2c;
-}
+    .rating-rank {
+      color: #861d2c;
+    }
   </style>
 </head>
 
@@ -670,6 +605,28 @@ dd {
       </a>
 
       <span class="header-label">CHAMPIONS ARCHIVE</span>
+
+      <div class="menu-wrap">
+        <button
+          class="menu"
+          id="menuButton"
+          type="button"
+          aria-label="メニュー"
+          aria-expanded="false"
+          aria-controls="navMenu">☰</button>
+
+        <nav
+          class="nav-menu"
+          id="navMenu"
+          aria-label="サイトメニュー">
+          <a href="index.html">大会概要</a>
+          <a href="regulations.html">レギュレーション</a>
+          <a href="contributors">大会協力</a>
+          <a href="champions.html">歴代優勝チーム</a>
+          <a href="results.html">魔王杯　歴代ベスト16</a>
+          <a href="rating.html">M Rating</a>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -754,5 +711,22 @@ dd {
   <footer>
     <p>魔王杯</p>
   </footer>
+
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const navMenu = document.getElementById('navMenu');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.menu-wrap')) {
+        navMenu.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
 </body>
 </html>
