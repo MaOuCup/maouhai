@@ -1,1 +1,693 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>S Rating｜魔王杯</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --white: #ffffff;
+  --black: #171717;
+  --gray: #6b7280;
+  --red: #ef233c;
+  --line: #e2e4e8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--black);
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+}
+
+/* ===== 共通ヘッダー ===== */
+
+.site-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 90px;
+  padding: 16px 6%;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-main {
+  color: #171717;
+  font-size: clamp(32px, 7vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.brand-sub {
+  color: #ef233c;
+  font-size: clamp(15px, 3.3vw, 21px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* ===== 三本線メニュー ===== */
+
+.menu-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.menu {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #171717;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 52px;
+  min-width: 200px;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.35);
+}
+
+.nav-menu.open {
+  display: block;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 9px;
+  color: #171717;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus {
+  background: #fef2f2;
+  color: #dc2626;
+  outline: none;
+}
+
+/* ===== メイン ===== */
+
+main {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 48px 20px 80px;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: .22em;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 6vw, 44px);
+  font-weight: 850;
+  line-height: 1.4;
+}
+
+.lead {
+  margin: 0 0 42px;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+/* ===== 共通カード ===== */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 32px;
+  padding: 26px 26px 26px 32px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid #b91c1c;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.07);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: var(--red);
+}
+
+.notice {
+  margin: 0;
+  color: #3f4650;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+/* ===== 計算機 ===== */
+
+.calculator-title {
+  margin: 0 0 20px;
+  font-size: 23px;
+  font-weight: 850;
+}
+
+.rating-label {
+  display: block;
+  margin: 18px 0 8px;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.rating-input {
+  display: block;
+  width: 100%;
+  padding: 14px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--black);
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.rating-input:focus {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.calculate-button {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #dc2626;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.calculate-button:hover {
+  background: #b91c1c;
+}
+
+.rating-result {
+  margin-top: 22px;
+  color: var(--black);
+  font-size: 22px;
+  font-weight: 850;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.rating-result:empty {
+  display: none;
+}
+
+.rating-result.rank-x {
+  color: #a00018;
+}
+
+/* ===== ランク表 ===== */
+
+.table-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid #b91c1c;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.07);
+}
+
+.table-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: var(--red);
+  z-index: 1;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+}
+
+th, td {
+  padding: 17px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+th {
+  background: #fafafa;
+  color: var(--gray);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+td {
+  color: var(--black);
+  font-size: 15px;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rank {
+  font-size: 17px;
+  font-weight: 850;
+  color: var(--black);
+}
+
+.rank-x {
+  color: #a00018;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+/* ===== フッター ===== */
+
+.footer-note {
+  margin: 48px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--gray);
+  font-size: 12px;
+  text-align: center;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+
+/* ===== スマートフォン対応 ===== */
+
+@media (max-width: 480px) {
+  .site-header {
+    min-height: 78px;
+    padding: 12px 16px;
+  }
+
+  .brand-main {
+    font-size: 32px;
+  }
+
+  .brand-sub {
+    font-size: 15px;
+  }
+
+  main {
+    padding: 36px 16px 64px;
+  }
+
+  .card {
+    padding: 22px 20px 22px 26px;
+    border-radius: 18px;
+  }
+
+  .notice {
+    font-size: 14px;
+  }
+
+  .calculator-title {
+    font-size: 21px;
+  }
+
+  .rating-result {
+    font-size: 19px;
+  }
+
+  th, td {
+    padding: 15px 8px;
+    font-size: 13px;
+  }
+
+  .rank {
+    font-size: 16px;
+  }
+
+  .rank-x {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== 共通ヘッダー ===== -->
+
+<header class="site-header">
+
+  <a class="brand" href="index.html"
+     aria-label="魔王杯 大会概要へ">
+    <span class="brand-main">MOC</span>
+    <span class="brand-sub">魔王杯</span>
+  </a>
+
+  <div class="menu-wrap">
+
+    <button
+      class="menu"
+      id="menuButton"
+      type="button"
+      aria-label="メニュー"
+      aria-expanded="false"
+      aria-controls="navMenu">☰</button>
+
+    <nav
+      class="nav-menu"
+      id="navMenu"
+      aria-label="サイトメニュー">
+
+      <a href="index.html">大会概要</a>
+      <a href="regulations.html">レギュレーション</a>
+      <a href="contributors">大会協力</a>
+      <a href="champions.html">歴代優勝チーム</a>
+      <a href="results.html">魔王杯　歴代ベスト16</a>
+      <a href="rating.html">M Rating</a>
+      <a href="s-rating.html">S Rating</a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+<!-- ===== S Rating ===== -->
+
+<main>
+
+  <p class="kicker">S RATING</p>
+
+  <h1>S Rating</h1>
+
+  <p class="lead">
+    魔王杯 SOLO独自のレーティング指標。
+  </p>
+
+  <div class="card">
+    <p class="notice">
+      魔王杯 SOLO独自の算出方法に基づく評価指標。
+    </p>
+  </div>
+
+  <!-- ===== 計算機 ===== -->
+
+  <section class="card" aria-labelledby="calculatorTitle">
+
+    <h2 class="calculator-title" id="calculatorTitle">
+      S Rating 計算
+    </h2>
+
+    <label class="rating-label" for="highestTrophies">
+      総合最高トロフィー数
+    </label>
+
+    <input
+      class="rating-input"
+      id="highestTrophies"
+      type="number"
+      min="0"
+      step="1"
+      inputmode="numeric"
+      placeholder="総合最高トロフィー数を入力"
+    >
+
+    <label class="rating-label" for="highestRankRate">
+      最高ランクレート
+    </label>
+
+    <input
+      class="rating-input"
+      id="highestRankRate"
+      type="number"
+      min="0"
+      step="1"
+      inputmode="numeric"
+      placeholder="最高ランクレートを入力"
+    >
+
+    <button
+      class="calculate-button"
+      id="calculateButton"
+      type="button">
+      計算する
+    </button>
+
+    <div
+      class="rating-result"
+      id="ratingResult"
+      role="status"
+      aria-live="polite">
+    </div>
+
+  </section>
+
+  <!-- ===== ランク表 ===== -->
+
+  <div class="table-card">
+    <div class="table-wrap">
+
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Point</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td class="rank rank-x">X</td>
+            <td>105.00以上</td>
+          </tr>
+
+          <tr>
+            <td class="rank">S+</td>
+            <td>102.50〜104.99</td>
+          </tr>
+
+          <tr>
+            <td class="rank">S−</td>
+            <td>100.00〜102.49</td>
+          </tr>
+
+          <tr>
+            <td class="rank">A+</td>
+            <td>90.00〜99.99</td>
+          </tr>
+
+          <tr>
+            <td class="rank">A−</td>
+            <td>80.00〜89.99</td>
+          </tr>
+
+          <tr>
+            <td class="rank">B+</td>
+            <td>65.00〜79.99</td>
+          </tr>
+
+          <tr>
+            <td class="rank">B−</td>
+            <td>55.00〜64.99</td>
+          </tr>
+
+          <tr>
+            <td class="rank">C</td>
+            <td>40.00〜54.99</td>
+          </tr>
+
+          <tr>
+            <td class="rank">D</td>
+            <td>39.99以下</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <p class="footer-note">
+    魔王杯 S Rating
+  </p>
+
+</main>
+
+<script>
+(function () {
+
+  /* ===== メニュー開閉 ===== */
+
+  const menuButton = document.getElementById('menuButton');
+  const navMenu = document.getElementById('navMenu');
+
+  menuButton.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.menu-wrap')) {
+      navMenu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ===== S Rating 計算 ===== */
+
+  const trophiesInput =
+    document.getElementById('highestTrophies');
+
+  const rateInput =
+    document.getElementById('highestRankRate');
+
+  const calculateButton =
+    document.getElementById('calculateButton');
+
+  const result =
+    document.getElementById('ratingResult');
+
+  function getRank(point100) {
+    if (point100 >= 10500n) return 'X';
+    if (point100 >= 10250n) return 'S+';
+    if (point100 >= 10000n) return 'S−';
+    if (point100 >= 9000n) return 'A+';
+    if (point100 >= 8000n) return 'A−';
+    if (point100 >= 6500n) return 'B+';
+    if (point100 >= 5500n) return 'B−';
+    if (point100 >= 4000n) return 'C';
+    return 'D';
+  }
+
+  function formatPoint(point100) {
+    const integerPart = point100 / 100n;
+    const decimalPart =
+      (point100 % 100n).toString().padStart(2, '0');
+
+    return integerPart.toString() + '.' + decimalPart;
+  }
+
+  function calculateRating() {
+    const rawT = trophiesInput.value.trim();
+    const rawR = rateInput.value.trim();
+
+    result.classList.remove('rank-x');
+
+    if (
+      !/^\d+$/.test(rawT) ||
+      !/^\d+$/.test(rawR)
+    ) {
+      result.textContent =
+        '正しいトロフィー数とランクレートを入力してください。';
+      return;
+    }
+
+    const T = BigInt(rawT);
+    const R = BigInt(rawR);
+
+    // 小数第3位以下を各段階で切り捨て
+    const trophyDiv15 = (T * 100n) / 15n;
+    const trophyWeighted = (trophyDiv15 * 3n) / 10n;
+    const rateWeighted = R * 70n;
+
+    const totalWeighted =
+      trophyWeighted + rateWeighted;
+
+    const point100 = totalWeighted / 100n;
+    const rank = getRank(point100);
+
+    result.textContent =
+      formatPoint(point100) + ' Point / ' + rank;
+
+    if (rank === 'X') {
+      result.classList.add('rank-x');
+    }
+  }
+
+  calculateButton.addEventListener(
+    'click',
+    calculateRating
+  );
+
+  [trophiesInput, rateInput].forEach(input => {
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        calculateRating();
+      }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
+
