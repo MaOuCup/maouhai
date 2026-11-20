@@ -129,7 +129,7 @@ a {
   outline: none;
 }
 
-/* ===== メイン ===== */
+/* ===== メインコンテンツ ===== */
 
 main {
   width: 100%;
@@ -159,7 +159,7 @@ h1 {
   font-size: 14px;
 }
 
-/* ===== 共通カード ===== */
+/* ===== 説明カード ===== */
 
 .card {
   position: relative;
@@ -248,12 +248,14 @@ tbody tr:last-child td {
 }
 
 .rank {
+  color: var(--black);
   font-size: 17px;
   font-weight: 850;
-  color: var(--black);
 }
 
-.rank-x {
+/* XランクはM Ratingと同じ濃い赤 */
+
+.rank.rank-x {
   color: #a00018;
   font-size: 21px;
   font-weight: 900;
@@ -305,14 +307,6 @@ button:focus-visible {
     font-size: 14px;
   }
 
-  .calculator-title {
-    font-size: 21px;
-  }
-
-  .rating-result {
-    font-size: 19px;
-  }
-
   th, td {
     padding: 15px 8px;
     font-size: 13px;
@@ -322,7 +316,7 @@ button:focus-visible {
     font-size: 16px;
   }
 
-  .rank-x {
+  .rank.rank-x {
     font-size: 20px;
   }
 }
@@ -382,67 +376,18 @@ button:focus-visible {
     魔王杯 SOLO独自のレーティング指標。
   </p>
 
-  <div class="card">
+  <!-- ===== 説明 ===== -->
+
+  <section class="card">
     <p class="notice">
       魔王杯 SOLO独自の算出方法に基づく評価指標。
     </p>
-  </div>
-
-  <!-- ===== 計算機 ===== -->
-
-  <section class="card" aria-labelledby="calculatorTitle">
-
-    <h2 class="calculator-title" id="calculatorTitle">
-      S Rating 計算
-    </h2>
-
-    <label class="rating-label" for="highestTrophies">
-      総合最高トロフィー数
-    </label>
-
-    <input
-      class="rating-input"
-      id="highestTrophies"
-      type="number"
-      min="0"
-      step="1"
-      inputmode="numeric"
-      placeholder="総合最高トロフィー数を入力"
-    >
-
-    <label class="rating-label" for="highestRankRate">
-      最高レート
-    </label>
-
-    <input
-      class="rating-input"
-      id="highestRankRate"
-      type="number"
-      min="0"
-      step="1"
-      inputmode="numeric"
-      placeholder="最高レートを入力"
-    >
-
-    <button
-      class="calculate-button"
-      id="calculateButton"
-      type="button">
-      計算する
-    </button>
-
-    <div
-      class="rating-result"
-      id="ratingResult"
-      role="status"
-      aria-live="polite">
-    </div>
-
   </section>
 
-  <!-- ===== ランク表 ===== -->
+  <!-- ===== ランク一覧 ===== -->
 
-  <div class="table-card">
+  <section class="table-card" aria-label="S Rating ランク一覧">
+
     <div class="table-wrap">
 
       <table>
@@ -504,7 +449,8 @@ button:focus-visible {
       </table>
 
     </div>
-  </div>
+
+  </section>
 
   <p class="footer-note">
     魔王杯 S Rating
@@ -512,11 +458,10 @@ button:focus-visible {
 
 </main>
 
+<!-- ===== メニュー開閉 ===== -->
+
 <script>
 (function () {
-
-  /* ===== メニュー開閉 ===== */
-
   const menuButton = document.getElementById('menuButton');
   const navMenu = document.getElementById('navMenu');
 
@@ -531,95 +476,8 @@ button:focus-visible {
       menuButton.setAttribute('aria-expanded', 'false');
     }
   });
-
-  /* ===== S Rating 計算 ===== */
-
-  const trophiesInput =
-    document.getElementById('highestTrophies');
-
-  const rateInput =
-    document.getElementById('highestRankRate');
-
-  const calculateButton =
-    document.getElementById('calculateButton');
-
-  const result =
-    document.getElementById('ratingResult');
-
-  function getRank(point100) {
-    if (point100 >= 10500n) return 'X';
-    if (point100 >= 10250n) return 'S+';
-    if (point100 >= 10000n) return 'S−';
-    if (point100 >= 9000n) return 'A+';
-    if (point100 >= 8000n) return 'A−';
-    if (point100 >= 6500n) return 'B+';
-    if (point100 >= 5500n) return 'B−';
-    if (point100 >= 4000n) return 'C';
-    return 'D';
-  }
-
-  function formatPoint(point100) {
-    const integerPart = point100 / 100n;
-    const decimalPart =
-      (point100 % 100n).toString().padStart(2, '0');
-
-    return integerPart.toString() + '.' + decimalPart;
-  }
-
-  function calculateRating() {
-    const rawT = trophiesInput.value.trim();
-    const rawR = rateInput.value.trim();
-
-    result.classList.remove('rank-x');
-
-    if (
-      !/^\d+$/.test(rawT) ||
-      !/^\d+$/.test(rawR)
-    ) {
-      result.textContent =
-        '正しいトロフィー数とランクレートを入力してください。';
-      return;
-    }
-
-    const T = BigInt(rawT);
-    const R = BigInt(rawR);
-
-    // 小数第3位以下を各段階で切り捨て
-    const trophyDiv15 = (T * 100n) / 15n;
-    const trophyWeighted = (trophyDiv15 * 3n) / 10n;
-    const rateWeighted = R * 70n;
-
-    const totalWeighted =
-      trophyWeighted + rateWeighted;
-
-    const point100 = totalWeighted / 100n;
-    const rank = getRank(point100);
-
-    result.textContent =
-      formatPoint(point100) + ' Point / ' + rank;
-
-    if (rank === 'X') {
-      result.classList.add('rank-x');
-    }
-  }
-
-  calculateButton.addEventListener(
-    'click',
-    calculateRating
-  );
-
-  [trophiesInput, rateInput].forEach(input => {
-    input.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        calculateRating();
-      }
-    });
-  });
-
 })();
 </script>
 
 </body>
 </html>
-
