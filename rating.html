@@ -77,7 +77,7 @@ a {
   line-height: 1;
 }
 
-/* ===== 三本線メニュー：index.html と統一 ===== */
+/* ===== 三本線メニュー ===== */
 
 .menu-wrap {
   position: relative;
@@ -159,7 +159,7 @@ h1 {
   font-size: 14px;
 }
 
-/* ===== 共通カード ===== */
+/* ===== 説明カード ===== */
 
 .card {
   position: relative;
@@ -239,8 +239,8 @@ th {
 }
 
 td {
-  font-size: 15px;
   color: var(--black);
+  font-size: 15px;
 }
 
 tbody tr:last-child td {
@@ -248,15 +248,20 @@ tbody tr:last-child td {
 }
 
 .rank {
+  color: var(--black);
   font-size: 17px;
   font-weight: 850;
 }
 
-.rank-x {
+/* Xランクは濃い赤 */
+
+.rank.rank-x {
   color: #a00018;
   font-size: 21px;
   font-weight: 900;
 }
+
+/* ===== フッター ===== */
 
 .footer-note {
   margin: 48px 0 0;
@@ -311,7 +316,7 @@ button:focus-visible {
     font-size: 16px;
   }
 
-  .rank-x {
+  .rank.rank-x {
     font-size: 20px;
   }
 }
@@ -371,53 +376,18 @@ button:focus-visible {
     魔王杯独自のレーティング指標。
   </p>
 
-  <div class="card">
+  <!-- ===== 説明 ===== -->
+
+  <section class="card">
     <p class="notice">
       魔王杯独自の算出方法に基づく評価指標。
     </p>
-  </div>
-
-  <!-- ===== 計算機 ===== -->
-
-  <section class="card" aria-labelledby="calculatorTitle">
-
-    <h2 class="calculator-title" id="calculatorTitle">
-      M Rating 計算
-    </h2>
-
-    <label class="rating-label" for="highestRate">
-      最高レート
-    </label>
-
-    <input
-      class="rating-input"
-      id="highestRate"
-      type="number"
-      min="0"
-      step="1"
-      inputmode="numeric"
-      placeholder="最高レートを入力"
-    >
-
-    <button
-      class="calculate-button"
-      id="calculateButton"
-      type="button">
-      計算する
-    </button>
-
-    <div
-      class="rating-result"
-      id="ratingResult"
-      role="status"
-      aria-live="polite">
-    </div>
-
   </section>
 
-  <!-- ===== ランク表 ===== -->
+  <!-- ===== ランク一覧 ===== -->
 
-  <div class="table-card">
+  <section class="table-card" aria-label="M Rating ランク一覧">
+
     <div class="table-wrap">
 
       <table>
@@ -476,7 +446,8 @@ button:focus-visible {
       </table>
 
     </div>
-  </div>
+
+  </section>
 
   <p class="footer-note">
     魔王杯 M Rating
@@ -484,10 +455,10 @@ button:focus-visible {
 
 </main>
 
+<!-- ===== メニュー開閉 ===== -->
+
 <script>
 (function () {
-  /* ===== メニュー開閉 ===== */
-
   const menuButton = document.getElementById('menuButton');
   const navMenu = document.getElementById('navMenu');
 
@@ -502,81 +473,6 @@ button:focus-visible {
       menuButton.setAttribute('aria-expanded', 'false');
     }
   });
-
-  /* ===== M Rating 計算 ===== */
-
-  const rateInput = document.getElementById("highestRate");
-  const calculateButton = document.getElementById("calculateButton");
-  const result = document.getElementById("ratingResult");
-
-  function getRank(point) {
-    if (point >= 310) return "X";
-    if (point >= 300) return "S1";
-    if (point >= 290) return "S2";
-    if (point >= 280) return "S3";
-    if (point >= 270) return "S4";
-    if (point >= 260) return "S5";
-    if (point >= 250) return "S6";
-
-    if (point >= 240) return "A1";
-    if (point >= 230) return "A2";
-    if (point >= 220) return "A3";
-    if (point >= 210) return "A4";
-    if (point >= 200) return "A5";
-    if (point >= 190) return "A6";
-
-    if (point >= 180) return "B1";
-    if (point >= 170) return "B2";
-    if (point >= 160) return "B3";
-    if (point >= 150) return "B4";
-    if (point >= 140) return "B5";
-    if (point >= 130) return "B6";
-
-    if (point >= 120) return "C1";
-    if (point >= 110) return "C2";
-    if (point >= 100) return "C3";
-    if (point >= 90) return "C4";
-    if (point >= 80) return "C5";
-    if (point >= 70) return "C6";
-
-    if (point >= 60) return "D1";
-    if (point >= 50) return "D2";
-    if (point >= 40) return "D3";
-    if (point >= 30) return "D4";
-    if (point >= 20) return "D5";
-
-    return "D6";
-  }
-
-  function calculateRating() {
-    const raw = rateInput.value.trim();
-    const rate = Number(raw);
-
-    if (
-      raw === "" ||
-      !Number.isFinite(rate) ||
-      rate < 0 ||
-      !Number.isInteger(rate)
-    ) {
-      result.textContent = "正しい最高レートを入力してください。";
-      return;
-    }
-
-    const point = Math.round((rate / 113) * 100) / 100;
-    const rank = getRank(point);
-
-    result.textContent =
-      point.toFixed(2) + " Point / " + rank;
-  }
-
-  calculateButton.addEventListener("click", calculateRating);
-
-  rateInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      calculateRating();
-    }
-  });
-
 })();
 </script>
 
