@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#4B0F99">
+<title>魔王杯 SOLO 大会結果｜MOC</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --white: #ffffff;
+  --black: #171717;
+  --gray: #6b7280;
+  --purple: #4B0F99;
+  --purple-dark: #35106F;
+  --line: #e2e4e8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--black);
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+}
+
+/* ===== SOLO専用ヘッダー ===== */
+
+.site-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 90px;
+  padding: 16px 6%;
+  background: var(--purple);
+  border-bottom: 1px solid var(--purple-dark);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-main {
+  color: #ffffff;
+  font-size: clamp(32px, 7vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.brand-sub {
+  color: #ffffff;
+  font-size: clamp(15px, 3.3vw, 21px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* ===== 三本線メニュー ===== */
+
+.menu-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.menu {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--purple);
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 52px;
+  min-width: 200px;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.25);
+}
+
+.nav-menu.open {
+  display: block;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 9px;
+  color: #171717;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus {
+  background: #f3ecff;
+  color: var(--purple);
+  outline: none;
+}
+
+/* ===== メインコンテンツ ===== */
+
+main {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 48px 20px 80px;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  color: var(--purple);
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: .22em;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 6vw, 44px);
+  font-weight: 850;
+  line-height: 1.4;
+}
+
+.lead {
+  margin: 0 0 42px;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+/* ===== 大会結果カード ===== */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 32px;
+  padding: 26px 26px 26px 32px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--purple-dark);
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.07);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: var(--purple);
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 850;
+}
+
+.result-row {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.result-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.rank {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--gray);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.winner .rank {
+  color: var(--purple);
+}
+
+.team {
+  font-size: 19px;
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.from {
+  margin: 6px 0 0;
+  color: var(--gray);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+/* ===== フッター ===== */
+
+.footer-note {
+  margin: 48px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--gray);
+  font-size: 12px;
+  text-align: center;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 4px;
+}
+
+/* ===== スマートフォン対応 ===== */
+
+@media (max-width: 480px) {
+  .site-header {
+    min-height: 78px;
+    padding: 12px 16px;
+  }
+
+  .brand-main {
+    font-size: 32px;
+  }
+
+  .brand-sub {
+    font-size: 15px;
+  }
+
+  main {
+    padding: 36px 16px 64px;
+  }
+
+  .card {
+    padding: 22px 20px 22px 26px;
+    border-radius: 18px;
+  }
+
+  .card h2 {
+    font-size: 24px;
+  }
+
+  .team {
+    font-size: 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== SOLO専用ヘッダー ===== -->
+
+<header class="site-header">
+
+  <a class="brand" href="index.html"
+     aria-label="魔王杯 大会概要へ">
+    <span class="brand-main">MOC</span>
+    <span class="brand-sub">SOLO</span>
+  </a>
+
+  <div class="menu-wrap">
+
+    <button
+      class="menu"
+      id="menuButton"
+      type="button"
+      aria-label="メニュー"
+      aria-expanded="false"
+      aria-controls="navMenu">☰</button>
+
+    <nav
+      class="nav-menu"
+      id="navMenu"
+      aria-label="サイトメニュー">
+
+      <a href="index.html">大会概要</a>
+      <a href="regulations.html">レギュレーション</a>
+      <a href="contributors">大会協力</a>
+      <a href="champions.html">歴代優勝チーム</a>
+      <a href="results.html">魔王杯　歴代ベスト4</a>
+      <a href="rating.html">M Rating</a>
+      <a href="s-rating.html">S Rating</a>
+      <a href="solo-results.html">魔王杯 SOLO 歴代ベスト4</a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+<!-- ===== 大会結果 ===== -->
+
+<main>
+
+  <p class="kicker">SOLO RESULTS</p>
+
+  <h1>魔王杯 SOLO 歴代ベスト4</h1>
+
+  <p class="lead">
+    魔王杯 SOLOの大会結果を掲載しています。
+  </p>
+
+  <!-- ===== 第1回 魔王杯 SOLO ===== -->
+
+  <section class="card">
+
+    <h2>第1回 魔王杯 SOLO</h2>
+<p class="participants">全22選手出場</p>
+
+    <div class="result-row winner">
+      <span class="rank">優勝</span>
+      <div class="team">がかり</div>
+      <div class="from">
+        FROM：【ブロスタ交流隊】
+      </div>
+    </div>
+
+    <div class="result-row">
+      <span class="rank">準優勝</span>
+      <div class="team">Kei</div>
+      <div class="from">
+        FROM：ブロスタ えんじょい！！
+      </div>
+    </div>
+
+    <div class="result-row">
+      <span class="rank">3位</span>
+      <div class="team">るい</div>
+      <div class="from">
+        FROM：X(旧Twitter)
+      </div>
+    </div>
+
+    <div class="result-row">
+      <span class="rank">4位</span>
+      <div class="team">はるふゆ</div>
+      <div class="from">
+        FROM：ブロスタ えんじょい！！
+      </div>
+    </div>
+
+  </section>
+
+  <p class="footer-note">
+    魔王杯 SOLO 歴代ベスト4
+  </p>
+
+</main>
+
+<!-- ===== メニュー開閉 ===== -->
+
+<script>
+(function () {
+  const menuButton = document.getElementById('menuButton');
+  const navMenu = document.getElementById('navMenu');
+
+  menuButton.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.menu-wrap')) {
+      navMenu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
